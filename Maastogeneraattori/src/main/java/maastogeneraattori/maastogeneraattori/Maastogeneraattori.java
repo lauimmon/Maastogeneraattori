@@ -5,6 +5,10 @@
  */
 package maastogeneraattori.maastogeneraattori;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author lauimmon
@@ -15,10 +19,11 @@ public class Maastogeneraattori {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TimanttiNelio tn = new TimanttiNelio(5);
+        TimanttiNelio tn = new TimanttiNelio(100);
         
-        tn.asetaArvot(50, 100, 10);
-        tn.tulosta();
+        tn.asetaArvot(55, 55, 0.00001);
+        //tn.tulosta();
+        tn.tallenna();
     }
     
 }

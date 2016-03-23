@@ -5,7 +5,12 @@
  */
 package maastogeneraattori.maastogeneraattori;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,7 +20,7 @@ class TimanttiNelio {
     private double[][] ruudukko;
     private int min;
     private int max;
-    private int vaihtelu;
+    private double karkeus;
     private Random rand;
     private int iteraariot;
 
@@ -34,10 +39,10 @@ class TimanttiNelio {
         this.rand = new Random();
     }
     
-    public void asetaArvot(int min, int max, int vaihtelu) {
+    public void asetaArvot(int min, int max, double karkeus) {
         this.min = min;
         this.max = max;
-        this.vaihtelu = vaihtelu;
+        this.karkeus = karkeus;
         this.ruudukko = new double[ruudukko.length][ruudukko.length];
         
         asetaNurkat();
@@ -54,12 +59,13 @@ class TimanttiNelio {
 
     private void jaaKartta(int koko) {
         int puolet = koko / 2;
+        double vaihtelu = karkeus * koko;
         if (puolet < 1) {
             return;
         }
         
-        for (int y = puolet; y < ruudukko.length; y += koko) {
-            for (int x = puolet; x < ruudukko.length; x += koko) {
+        for (int y = puolet; y < ruudukko.length - 1; y += koko) {
+            for (int x = puolet; x < ruudukko.length - 1; x += koko) {
                 nelioaskel(x, y, puolet, rand.nextDouble() * vaihtelu * 2 - vaihtelu);
             }
         }
@@ -113,6 +119,29 @@ class TimanttiNelio {
             System.out.println("");
         }
         System.out.println("");
+    }
+
+    public void tallenna() {
+        String tiedosto = "korkeuskartta.txt";
+        
+        try {
+            FileWriter fw = new FileWriter(tiedosto);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            
+            for (int i = 0; i < ruudukko.length; i++) {
+                for (int j = 0; j < ruudukko.length; j++) {
+                    bw.write(String.valueOf(ruudukko[i][j]) + " ");
+                }
+                bw.newLine();
+            }
+            
+            bw.close();
+            
+        } catch (IOException ex) {
+            System.out.println("Tiedoston kirjoitus epäonnistui");
+        }
+        
     }
     
 }    
