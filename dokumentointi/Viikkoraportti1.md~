@@ -1,0 +1,14 @@
+**Ensimmäinen viikko**
+
+Päätin ottaa aiheeksi maastogeneroinnin. Aihetta tutkiessa löysin ensin timantti-neliö-algoritmin (diamond-square algorithm). Pian selvisi, että tämä soveltuu hyvin rajatun alueen luomiseen, mutta jos haluan luoda maastoa ns. rajattomaan maailmaan, ei tätä algoritmia voi käyttää. Rajaton maailma on sellainen, jota ei luoda kaikkea kerralla, vaan sitä generoituu sitä mukaa kun esim. pelissä pelaaja liikkuu maailmassa. Kaikkea ei voi säilyttää muistissa, mutta pelaajan palatessa paikkaan joka on jo muistista poistettu, pitää maasto luoda tasan samanlaisena kuin aiemmin. 
+
+Rajattoman maailman luomista selvitellessäni törmäsin Perlin-kohinaan ja fraktionaaliseen Brownin liikkeeseen. Toisin kuin helposti ymmärrettävä timantti-neliö-algoritmi, näiden periaatteet eivät heti selvinneet. Sen opin Pelin-kohinasta, että sillä voi luoda maastoon myös luolastoja, toisin kuin timantti-neliö-algoritmilla, koska sillä luodussa maastossa joka pistettä vastaa vain yksi korkeusarvo.
+
+**Toinen viikko**
+
+**23.3.**
+
+Tein timantti-neliö-algoritmin valmiiksi Javalla, ja Matlabilla plottasin generoituja maastoja. Tulokset eivät näyttäneet vastaavan netistä löytyviä kuvia timantti-neliö-algoritmilla luoduista maastoista. Maastosta tuli paljon röpelöisempää ja jopa piikkistä. En kuitenkaan keksinyt mikä koodissa voisi olla väärin. Syötearvojen muokkaaminen vaikutti tulokseen, mutta tarpeeksi hyviä arvoja oli vaikea löytää, vaikka vain yhden parametrin pitäisi vaikuttaa erityisesti tulokseen.
+
+Perlin-kohinaan en ehtinyt vielä perehtyä kunnolla, se on seuraavana tehtävänä. Työmäärä tänään 7,5 tuntia.
+
