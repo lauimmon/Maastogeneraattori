@@ -12,6 +12,6 @@ Tein timantti-neliö-algoritmin valmiiksi Javalla, ja Matlabilla plottasin gener
 
 Perlin-kohinaan en ehtinyt vielä perehtyä kunnolla, se on seuraavana tehtävänä. Työmäärä tänään 7,5 tuntia.
 
-**30.3.***
+**30.3.**
 
 Luin lisää Perlin-kohinasta sekä Simplex noisesta. Lisäsin kommentit timantti-neliö-koodiin. Testailin taas algoritmia eri arvoilla. Ehkä jyrkkyyteen saisi selkeämpiä eroja, ja maastot saisi luonnollisemmiksi lisäämällä maastoon eroosiota. Tein ohjelmaan testejä. Työmäärä tänään neljä tuntia.
