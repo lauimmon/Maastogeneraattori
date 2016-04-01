@@ -1,7 +1,0 @@
-http://notch.tumblr.com/post/3746989361/terrain-generation-part-1
-http://flafla2.github.io/2014/08/09/perlinnoise.html
-https://gist.github.com/Flafla2/f0260a861be0ebdeef76
-https://solarianprogrammer.com/2012/07/18/perlin-noise-cpp-11/
-http://freespace.virgin.net/hugo.elias/models/m_perlin.htm
-http://stackoverflow.com/questions/3303940/perlin-noise-algorithm
-
