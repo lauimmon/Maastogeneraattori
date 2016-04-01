@@ -7,7 +7,7 @@ package maastogeneraattori;
 
 import java.util.ArrayList;
 import java.util.List;
-import maastogeneraattori.maastogeneraattori.TimanttiNelio;
+import maastogeneraattori.algoritmit.TimanttiNelio;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

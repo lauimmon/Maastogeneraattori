@@ -5,6 +5,7 @@
  */
 package maastogeneraattori.maastogeneraattori;
 
+import maastogeneraattori.algoritmit.Perlinkohina;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,11 +20,9 @@ public class Maastogeneraattori {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TimanttiNelio tn = new TimanttiNelio(100);
+        Perlinkohina pk = new Perlinkohina(50);
         
-        tn.asetaArvot(55, 55, 0.00001);
-        //tn.tulosta();
-        tn.tallenna();
+        
     }
     
 }

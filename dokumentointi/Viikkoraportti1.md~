@@ -18,8 +18,4 @@ Luin lisää Perlin-kohinasta sekä Simplex-kohinasta (Simplex noise). Lisäsin 
 
 **31.3.**
 
-Lisää lueskelua Perlin-kohinasta, Simplex-kohinasta ja fraktionaalisesta Brownin liikkeestä. Pohdiskelua siitä, mitä näistä kannattaisi koodissa toteuttaa ja onko ylipäätään realistista toteuttaa yhtä enempää. Luin myös miten eroosion voisi toteuttaa, ja kannattaako se. Rajattomassa maailmassa ilmeisesti ei. Työmäärä 2,5 tuntia.
-
-**1.4.**
-
-Luettavaa löytyi tänään Value noisesta, joka on hyvin paljon Perlin-kohinan kaltaista. Aloitin Perlin-kohinan koodaamisen.
+Lisää lueskelua Perlin-kohinasta, Simplex-kohinasta ja fraktionaalisesta Brownin liikkeestä. Pohdiskelua siitä, mitä näistä kannattaisi koodissa toteuttaa ja onko ylipäätään realistista toteuttaa yhtä enempää. Luin myös miten eroosion voisi toteuttaa. Ilmeisesti vesieroosion algoritmi olisi paljon hitaampi kuin lämpöeroosion, joten algoritmi kannattaisi tehdä lämpöeroosion pohjalta. Ilmeisesti kuitenkin eroosiota on vaikea toteuttaa rajattoman maailman tapauksessa.

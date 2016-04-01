@@ -19,4 +19,30 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+                <version>3.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.1.8</version>
+                <configuration>
+                    <targetClasses>
+                        <param>maastogeneraattori.algoritmit.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>maastogeneraattori.algoritmit.*</param>
+                    </targetTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
