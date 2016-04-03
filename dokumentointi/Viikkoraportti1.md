@@ -22,4 +22,8 @@ Lisää lueskelua Perlin-kohinasta, Simplex-kohinasta ja fraktionaalisesta Brown
 
 **1.4.**
 
-Luettavaa löytyi tänään Value noisesta, joka on hyvin paljon Perlin-kohinan kaltaista. Aloitin Perlin-kohinan koodaamisen.
+Luettavaa löytyi tänään Value noisesta, joka on hyvin paljon Perlin-kohinan kaltaista. Aloitin Perlin-kohinan koodaamisen. Työmäärä tänään 6,5 tuntia.
+
+**3.4.**
+
+
