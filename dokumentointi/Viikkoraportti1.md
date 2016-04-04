@@ -26,4 +26,8 @@ Luettavaa löytyi tänään Value noisesta, joka on hyvin paljon Perlin-kohinan 
 
 **3.4.**
 
+Kirjoitin lisää koodia Perlin-kohina-luokkaan. Plottasin sillä syntyviä maastoja, mutta ne eivät olleetkaan maastomaisia, vaan sileitä pintoja. Pitää siis selvittää lisää, mitä tämä koodi nyt siis tekee ja mitä pitää muokata. 
 
+Perlin-kohina-luokalle ei saanut tehtyä järkevästi testejä. Työmäärä tänään 2,5 tuntia.
+
+**Viikon työmäärä** yhteensä 23 tuntia.

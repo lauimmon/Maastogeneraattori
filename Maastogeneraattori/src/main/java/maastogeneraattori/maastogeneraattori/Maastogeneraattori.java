@@ -33,7 +33,7 @@ public class Maastogeneraattori {
         }
         System.out.println("]");
         
-        maasto = pk.luoMaasto(50, 0, 0);
+        maasto = pk.luoMaasto(500, 0, 0);
         
         System.out.print("[");
         for (int i = 0; i < maasto.length; i++) {
@@ -43,7 +43,6 @@ public class Maastogeneraattori {
             System.out.println("");
         }
         System.out.println("]");
-        
     }
     
 }
