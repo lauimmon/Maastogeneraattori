@@ -6,33 +6,39 @@
 package maastogeneraattori.algoritmit;
 
 import java.util.Random;
+import maastogeneraattori.laskenta.Maasto;
+import maastogeneraattori.laskenta.Vektori;
 
 /**
+ * Luokka Perlin-kohinan luontiin.
+ * 
+ * Tätä ei ole vielä käytetty maaston luontiin.
+ * Tätä varten kehitetään algoritmi myöhemmin.
  *
  * @author lauimmon
  */
 public class Perlinkohina {
     
-    private double[][][] randomVektorit;
+    private Vektori[][] satunnaisvektorit;
 
     /**
-     * Tehdään perusta vektoriruudukolle. Jokainen ruudukon piste saa arvokseen vektorin, jonka pituus 1.
+     * Tehdään perusta vektoriruudukolle. Jokainen ruudukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
      * 
      * @param n ruudukon koko
      */
     
     public Perlinkohina(int n) {
-        randomVektorit = new double[n][n][2];
+        satunnaisvektorit = new Vektori[n][n];
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                randomVektorit[i][j] = luoRandomYksikkoVektori();
+                satunnaisvektorit[i][j] = luoRandomYksikkoVektori();
             }
         }
     }
     
     /**
-     * Luo nxn korkeuskartan. Funktio käyttää tähän randomVektoreita koordinaateista
+     * Luo nxn korkeuskartan. Funktio käyttää tähän satunnaisvektoreita koordinaateista
      * (x1, y1), (x1 + 1, y1), (x1, y1 + 1), (x1 + 1, y1 + 1)
      * 
      * @param n kartan koko
@@ -41,7 +47,7 @@ public class Perlinkohina {
      * @return korkeuskartta
      */
     
-    public double[][] luoMaasto(int n, int x1, int y1) {
+    public Maasto luoMaasto(int n, int x1, int y1) {
         double[][] maasto = new double[n][n];
         
         for (int i = 0; i < n; i++) {
@@ -50,26 +56,19 @@ public class Perlinkohina {
             }
         }
         
-        return maasto;
+        return new Maasto(n, n);
     }
 
-    private double[] luoRandomYksikkoVektori() {
+    private Vektori luoRandomYksikkoVektori() {
         Random rand = new Random();
         
         double kulma = rand.nextDouble() * 2 * Math.PI;
         
-        return new double[] {Math.cos(kulma), Math.sin(kulma)};
+        return new Vektori(Math.cos(kulma), Math.sin(kulma));
     }
     
     private double lineaarinenInterpolointi(double a1, double a2, double paino) {
         return (1.0 - paino) * a1 + paino * a2;
-    }
-    
-    private double pistetulo(int ix, int iy, double x, double y) {
-        double dx = x - (double) ix;
-        double dy = y - (double) iy;
-        
-        return (dx * randomVektorit[iy][ix][0] + dy * randomVektorit[iy][ix][1]);
     }
     
     private double perlin(double x, double y) {
@@ -82,10 +81,15 @@ public class Perlinkohina {
         double sx = x - (double) x0;
         double sy = y - (double) y0;
         
-        double n00 = pistetulo(x0, y0, x, y);
-        double n10 = pistetulo(x1, y0, x, y);
-        double n01 = pistetulo(x0, y1, x, y);
-        double n11 = pistetulo(x1, y1, x, y);
+        Vektori v1 = new Vektori(x - (double) x0, y - (double) y0);
+        Vektori v2 = new Vektori(x - (double) x1, y - (double) y0);
+        Vektori v3 = new Vektori(x - (double) x0, y - (double) y1);
+        Vektori v4 = new Vektori(x - (double) x1, y - (double) y1);
+        
+        double n00 = v1.pistetulo(satunnaisvektorit[x0][y0]);
+        double n10 = v1.pistetulo(satunnaisvektorit[x1][y0]);
+        double n01 = v1.pistetulo(satunnaisvektorit[x0][y1]);
+        double n11 = v1.pistetulo(satunnaisvektorit[x1][y1]);
         
         //sx = haivyta(sx);
         //sy = haivyta(sy);
@@ -100,8 +104,8 @@ public class Perlinkohina {
         return i * i * i * (10 + i * (-15 + i * 6));
     }
 
-    public double[][][] getRandomVektorit() {
-        return randomVektorit;
+    public Vektori[][] getRandomVektorit() {
+        return satunnaisvektorit;
     }
     
 }

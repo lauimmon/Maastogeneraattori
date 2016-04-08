@@ -5,10 +5,22 @@
  */
 package maastogeneraattori.maastogeneraattori;
 
+import java.awt.Dimension;
 import maastogeneraattori.algoritmit.Perlinkohina;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import maastogeneraattori.algoritmit.TimanttiNelio;
+import maastogeneraattori.grafiikka.Grafiikka;
+import maastogeneraattori.grafiikka.RGB;
+import maastogeneraattori.laskenta.Kvaternio;
+import maastogeneraattori.laskenta.Maasto;
+import maastogeneraattori.laskenta.Vektori;
+
+
 
 /**
  *
@@ -20,29 +32,28 @@ public class Maastogeneraattori {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Perlinkohina pk = new Perlinkohina(50);
+        TimanttiNelio tn = new TimanttiNelio(50);
+        int koko = tn.getKoko();
         
-        double[][] maasto = pk.luoMaasto(50, 0, 0);
+        tn.asetaArvot(0, 1, 0.5);
         
-        System.out.print("[");
-        for (int i = 0; i < maasto.length; i++) {
-            for (int j = 0; j < maasto.length; j++) {
-                System.out.print(maasto[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println("]");
+        Maasto maasto = tn.getMaasto();
         
-        maasto = pk.luoMaasto(500, 0, 0);
+
         
-        System.out.print("[");
-        for (int i = 0; i < maasto.length; i++) {
-            for (int j = 0; j < maasto.length; j++) {
-                System.out.print(maasto[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println("]");
+        JFrame frame = new JFrame("Maasto");
+        
+        frame.setPreferredSize(new Dimension(1000, 1000));
+        
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        Grafiikka g = new Grafiikka(maasto);
+        frame.getContentPane().add(g);
+        
+        frame.pack();
+        frame.setVisible(true);
+        
+        g.piirra();
     }
     
 }

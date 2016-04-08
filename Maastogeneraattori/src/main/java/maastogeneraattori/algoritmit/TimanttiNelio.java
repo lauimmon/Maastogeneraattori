@@ -11,16 +11,20 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import maastogeneraattori.grafiikka.RGB;
+import maastogeneraattori.laskenta.Maasto;
 
 /**
- *
+ * Luokalla generoidaan maasto timantti-neliö-algoritmilla.
+ * 
  * @author lauimmon
  */
 public class TimanttiNelio {
-    private double[][] ruudukko;
+    private Maasto maasto;
     private double jyrkkyys;
     private Random rand;
     private int iteraariot;
+    private double min, max;
 
     /**
      * Luo taulukon, johon myöhemmin sijoitetaan timantti-neliö-algoritmilla tuotetut korkeusarvot.
@@ -41,7 +45,7 @@ public class TimanttiNelio {
         }
         this.iteraariot = i;
         
-        this.ruudukko = new double[koko][koko];
+        this.maasto = new Maasto(koko, koko);
         this.rand = new Random();
     }
     
@@ -56,18 +60,34 @@ public class TimanttiNelio {
      */
     public void asetaArvot(double min, double max, double jyrkkyys) {
         this.jyrkkyys = jyrkkyys;
-        this.ruudukko = new double[ruudukko.length][ruudukko.length];
+        this.min = Double.MIN_VALUE;
+        this.max = Double.MAX_VALUE;
         
         asetaNurkat(min, max);
         
-        jaaKartta(ruudukko.length - 1);
+        jaaKartta(maasto.getPituus() - 1);
+        
+        maasto.kolmioiJaLisaaValoJaVarjot();
     }
 
     private void asetaNurkat(double min, double max) {
-        ruudukko[0][0] = rand.nextDouble() * (max-min) + min;
-        ruudukko[0][ruudukko.length-1] = rand.nextDouble() * (max-min) + min;
-        ruudukko[ruudukko.length-1][0] = rand.nextDouble() * (max-min) + min;
-        ruudukko[ruudukko.length-1][ruudukko.length-1] = rand.nextDouble() * (max-min) + min;
+        double arvo = rand.nextDouble() * (max-min) + min;
+        asetaArvo(0, 0, arvo);
+        
+        arvo = rand.nextDouble() * (max-min) + min;
+        asetaArvo(0, maasto.getPituus() - 1, arvo);
+        
+        arvo = rand.nextDouble() * (max-min) + min;
+        asetaArvo(maasto.getPituus() - 1, 0, arvo);
+        
+        arvo = rand.nextDouble() * (max-min) + min;
+        asetaArvo(maasto.getPituus() - 1, maasto.getPituus() - 1, arvo);
+    }
+    
+    private void asetaArvo(int i, int j, double arvo) {
+        maasto.setArvo(i, j, arvo);
+        this.min = Math.min(arvo, this.min);
+        this.max = Math.max(arvo , this.max);
     }
 
     private void jaaKartta(int koko) {
@@ -77,14 +97,14 @@ public class TimanttiNelio {
             return;
         }
         
-        for (int y = puolet; y < ruudukko.length - 1; y += koko) {
-            for (int x = puolet; x < ruudukko.length - 1; x += koko) {
+        for (int y = puolet; y < maasto.getPituus() - 1; y += koko) {
+            for (int x = puolet; x < maasto.getPituus() - 1; x += koko) {
                 nelioaskel(x, y, puolet, rand.nextDouble() * vaihtelu * 2 - vaihtelu);
             }
         }
         
-        for (int y = 0; y < ruudukko.length; y += puolet) {
-            for (int x = (y + puolet) % koko; x < ruudukko.length; x += koko) {
+        for (int y = 0; y < maasto.getPituus(); y += puolet) {
+            for (int x = (y + puolet) % koko; x < maasto.getPituus(); x += koko) {
                 timanttiaskel(x, y, puolet, rand.nextDouble() * vaihtelu * 2 - vaihtelu);
             }
         }
@@ -93,44 +113,44 @@ public class TimanttiNelio {
     }
 
     private void nelioaskel(int x, int y, int koko, double offset) {
-        double yht = ruudukko[x + koko][y + koko];
-        yht += ruudukko[x + koko][y - koko];
-        yht += ruudukko[x - koko][y + koko];
-        yht += ruudukko[x - koko][y - koko];
+        double yht = maasto.getArvo(x + koko, y + koko);
+        yht += maasto.getArvo(x + koko, y - koko);
+        yht += maasto.getArvo(x - koko, y + koko);
+        yht += maasto.getArvo(x - koko, y - koko);
         yht /= 4;
-        ruudukko[x][y] = yht + offset;
+        asetaArvo(x, y, yht + offset);
     }
     
     private void timanttiaskel(int x, int y, int koko, double offset) {
         double yht = 0;
         int i = 0;
         if (y - koko >= 0) {
-            yht += ruudukko[x][y-koko];
+            yht += maasto.getArvo(x, y - koko);
             i++;
         }
-        if (x + koko < ruudukko.length) {
-            yht += ruudukko[x + koko][y];
+        if (x + koko < maasto.getPituus()) {
+            yht += maasto.getArvo(x + koko, y);;
             i++;
         }
-        if (y + koko < ruudukko.length) {
-            yht += ruudukko[x][y + koko];
+        if (y + koko < maasto.getPituus()) {
+            yht += maasto.getArvo(x, y + koko);;
             i++;
         }
         if (x - koko >= 0) {
-            yht += ruudukko[x - koko][y];
+            yht += maasto.getArvo(x - koko, y);;
             i++;
         }
         yht /= i;
-        ruudukko[x][y] = yht + offset;
+        asetaArvo(x, y, yht + offset);
     }
     
     /**
      * Tulostaa generoidun maaston 2D-taulukkona.
      */
     public void tulosta() {
-        for (int i = 0; i < ruudukko.length; i++) {
-            for (int j = 0; j < ruudukko[0].length; j++) {
-                System.out.print(ruudukko[i][j] + " ");
+        for (int i = 0; i < maasto.getPituus(); i++) {
+            for (int j = 0; j < maasto.getPituus(); j++) {
+                System.out.print(maasto.getArvo(i, j) + " ");
             }
             System.out.println("");
         }
@@ -148,9 +168,9 @@ public class TimanttiNelio {
             BufferedWriter bw = new BufferedWriter(fw);
             
             
-            for (int i = 0; i < ruudukko.length; i++) {
-                for (int j = 0; j < ruudukko.length; j++) {
-                    bw.write(String.valueOf(ruudukko[i][j]) + " ");
+            for (int i = 0; i < maasto.getPituus(); i++) {
+                for (int j = 0; j < maasto.getPituus(); j++) {
+                    bw.write(String.valueOf(maasto.getArvo(i, j)) + " ");
                 }
                 bw.newLine();
             }
@@ -162,10 +182,12 @@ public class TimanttiNelio {
         }
     }
 
-    public double[][] getRuudukko() {
-        return ruudukko;
+    public Maasto getMaasto() {
+        return maasto;
     }
     
-    
+    public int getKoko() {
+        return maasto.getPituus();
+    }
     
 }
