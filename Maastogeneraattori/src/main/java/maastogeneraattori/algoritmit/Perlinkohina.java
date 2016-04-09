@@ -6,7 +6,7 @@
 package maastogeneraattori.algoritmit;
 
 import java.util.Random;
-import maastogeneraattori.laskenta.Maasto;
+import maastogeneraattori.grafiikka.Maailma;
 import maastogeneraattori.laskenta.Vektori;
 
 /**
@@ -47,7 +47,7 @@ public class Perlinkohina {
      * @return korkeuskartta
      */
     
-    public Maasto luoMaasto(int n, int x1, int y1) {
+    public double[][] luoMaasto(int n, int x1, int y1) {
         double[][] maasto = new double[n][n];
         
         for (int i = 0; i < n; i++) {
@@ -56,7 +56,7 @@ public class Perlinkohina {
             }
         }
         
-        return new Maasto(n, n);
+        return maasto;
     }
 
     private Vektori luoRandomYksikkoVektori() {

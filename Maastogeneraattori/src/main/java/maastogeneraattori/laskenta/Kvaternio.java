@@ -7,14 +7,23 @@ package maastogeneraattori.laskenta;
 
 /**
  * Kvaternio on vektori, johon on lisätty skalaari.
- * Kvaternioita käytetään tässä pisteiden kiertämiseen.
- * Tätä tarvitsee kun lasketaan, miten maasto nähdään tietystä suunnasta.
+ * Kvaternioita käytetään tässä vektoreiden kääntämiseen.
+ * Niitä tarvitaankun tässä maastogeneraattorissa kun halutaan muuttaa näkymän suuntaa katsojan paikan lisäksi.
  * 
  * @author lauimmon
  */
 public class Kvaternio {
     private double w, x, y, z;
     private Kvaternio kaanteinen;
+    
+    /**
+     * Luo kvaternion, jonka vektoriosa x, y, z ja skalaariosa w
+     * 
+     * @param w
+     * @param x
+     * @param y
+     * @param z 
+     */
 
     public Kvaternio(double w, double x, double y, double z) {
         this.w = w;
@@ -24,10 +33,23 @@ public class Kvaternio {
         this.kaanteinen = null;
     }
     
+    /**
+     * Luo kvaterniolle käänteisen kvaternion.
+     * 
+     * @return 
+     */
+    
     public Kvaternio kaanteinen() {
         double skaala = 1.0 / (x * x + y * y + z * z + w * w);
         return new Kvaternio(w * skaala, - x * skaala, - y * skaala, - z * skaala);
     }
+    
+    /**
+     * Laskee kahden kvaternion välisen kertolaskun.
+     * 
+     * @param k
+     * @return 
+     */
     
     public Kvaternio kerro(Kvaternio k) {
         double kx = k.x, ky = k.y, kz = k.z, kw = k.w;

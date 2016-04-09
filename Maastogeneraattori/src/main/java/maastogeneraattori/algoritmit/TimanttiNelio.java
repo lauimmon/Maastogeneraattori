@@ -12,19 +12,18 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import maastogeneraattori.grafiikka.RGB;
-import maastogeneraattori.laskenta.Maasto;
+import maastogeneraattori.grafiikka.Maailma;
 
 /**
  * Luokalla generoidaan maasto timantti-neliö-algoritmilla.
  * 
  * @author lauimmon
  */
-public class TimanttiNelio {
-    private Maasto maasto;
-    private double jyrkkyys;
+public class TimanttiNelio implements Maasto {
+    private double[][] maasto;
+    private double jyrkkyys, min, max;
     private Random rand;
     private int iteraariot;
-    private double min, max;
 
     /**
      * Luo taulukon, johon myöhemmin sijoitetaan timantti-neliö-algoritmilla tuotetut korkeusarvot.
@@ -43,10 +42,13 @@ public class TimanttiNelio {
             }
             i++;
         }
-        this.iteraariot = i;
+        iteraariot = i;
         
-        this.maasto = new Maasto(koko, koko);
-        this.rand = new Random();
+        min = Double.MAX_VALUE;
+        max = Double.MIN_VALUE;
+        
+        maasto = new double[koko][koko];
+        rand = new Random();
     }
     
     /**
@@ -60,14 +62,10 @@ public class TimanttiNelio {
      */
     public void asetaArvot(double min, double max, double jyrkkyys) {
         this.jyrkkyys = jyrkkyys;
-        this.min = Double.MIN_VALUE;
-        this.max = Double.MAX_VALUE;
         
         asetaNurkat(min, max);
         
-        jaaKartta(maasto.getPituus() - 1);
-        
-        maasto.kolmioiJaLisaaValoJaVarjot();
+        jaaKartta(maasto.length - 1);
     }
 
     private void asetaNurkat(double min, double max) {
@@ -75,19 +73,19 @@ public class TimanttiNelio {
         asetaArvo(0, 0, arvo);
         
         arvo = rand.nextDouble() * (max-min) + min;
-        asetaArvo(0, maasto.getPituus() - 1, arvo);
+        asetaArvo(0, maasto.length - 1, arvo);
         
         arvo = rand.nextDouble() * (max-min) + min;
-        asetaArvo(maasto.getPituus() - 1, 0, arvo);
+        asetaArvo(maasto.length - 1, 0, arvo);
         
         arvo = rand.nextDouble() * (max-min) + min;
-        asetaArvo(maasto.getPituus() - 1, maasto.getPituus() - 1, arvo);
+        asetaArvo(maasto.length - 1, maasto.length - 1, arvo);
     }
     
     private void asetaArvo(int i, int j, double arvo) {
-        maasto.setArvo(i, j, arvo);
-        this.min = Math.min(arvo, this.min);
-        this.max = Math.max(arvo , this.max);
+        maasto[i][j] = arvo;
+        min = Math.min(arvo, min);
+        max = Math.max(arvo, max);
     }
 
     private void jaaKartta(int koko) {
@@ -97,14 +95,14 @@ public class TimanttiNelio {
             return;
         }
         
-        for (int y = puolet; y < maasto.getPituus() - 1; y += koko) {
-            for (int x = puolet; x < maasto.getPituus() - 1; x += koko) {
+        for (int y = puolet; y < maasto.length - 1; y += koko) {
+            for (int x = puolet; x < maasto.length - 1; x += koko) {
                 nelioaskel(x, y, puolet, rand.nextDouble() * vaihtelu * 2 - vaihtelu);
             }
         }
         
-        for (int y = 0; y < maasto.getPituus(); y += puolet) {
-            for (int x = (y + puolet) % koko; x < maasto.getPituus(); x += koko) {
+        for (int y = 0; y < maasto.length; y += puolet) {
+            for (int x = (y + puolet) % koko; x < maasto.length; x += koko) {
                 timanttiaskel(x, y, puolet, rand.nextDouble() * vaihtelu * 2 - vaihtelu);
             }
         }
@@ -113,10 +111,10 @@ public class TimanttiNelio {
     }
 
     private void nelioaskel(int x, int y, int koko, double offset) {
-        double yht = maasto.getArvo(x + koko, y + koko);
-        yht += maasto.getArvo(x + koko, y - koko);
-        yht += maasto.getArvo(x - koko, y + koko);
-        yht += maasto.getArvo(x - koko, y - koko);
+        double yht = maasto[x + koko][y + koko];
+        yht += maasto[x + koko][y - koko];
+        yht += maasto[x - koko][y + koko];
+        yht += maasto[x - koko][y - koko];
         yht /= 4;
         asetaArvo(x, y, yht + offset);
     }
@@ -125,19 +123,19 @@ public class TimanttiNelio {
         double yht = 0;
         int i = 0;
         if (y - koko >= 0) {
-            yht += maasto.getArvo(x, y - koko);
+            yht += maasto[x][y - koko];
             i++;
         }
-        if (x + koko < maasto.getPituus()) {
-            yht += maasto.getArvo(x + koko, y);;
+        if (x + koko < maasto.length) {
+            yht += maasto[x + koko][y];
             i++;
         }
-        if (y + koko < maasto.getPituus()) {
-            yht += maasto.getArvo(x, y + koko);;
+        if (y + koko < maasto.length) {
+            yht += maasto[x][y + koko];
             i++;
         }
         if (x - koko >= 0) {
-            yht += maasto.getArvo(x - koko, y);;
+            yht += maasto[x - koko][y];
             i++;
         }
         yht /= i;
@@ -148,9 +146,9 @@ public class TimanttiNelio {
      * Tulostaa generoidun maaston 2D-taulukkona.
      */
     public void tulosta() {
-        for (int i = 0; i < maasto.getPituus(); i++) {
-            for (int j = 0; j < maasto.getPituus(); j++) {
-                System.out.print(maasto.getArvo(i, j) + " ");
+        for (int i = 0; i < maasto.length; i++) {
+            for (int j = 0; j < maasto.length; j++) {
+                System.out.print(maasto[i][j] + " ");
             }
             System.out.println("");
         }
@@ -168,9 +166,9 @@ public class TimanttiNelio {
             BufferedWriter bw = new BufferedWriter(fw);
             
             
-            for (int i = 0; i < maasto.getPituus(); i++) {
-                for (int j = 0; j < maasto.getPituus(); j++) {
-                    bw.write(String.valueOf(maasto.getArvo(i, j)) + " ");
+            for (int i = 0; i < maasto.length; i++) {
+                for (int j = 0; j < maasto.length; j++) {
+                    bw.write(String.valueOf(maasto[i][j]) + " ");
                 }
                 bw.newLine();
             }
@@ -182,12 +180,48 @@ public class TimanttiNelio {
         }
     }
 
-    public Maasto getMaasto() {
+    @Override
+    public double[][] getMaasto() {
         return maasto;
     }
     
     public int getKoko() {
-        return maasto.getPituus();
+        return maasto.length;
+    }
+    
+    /**
+     * Laskee pisteen (i, j) korkeuden suhteessa maaston maksimi- ja minimikorkeuksiin
+     * 
+     * @param i x-koordinaatti väliltä [0.0, 1.0]
+     * @param j y-koordinaatti väliltä [0.0, 1.0]
+     * @return arvo väliltä [0.0, 1.0], alin kohta 0.0, korkein 1.0
+     */
+    
+    @Override
+    public double suhteellinenKorkeus(double i, double j) {
+        double korkeus = maasto[(int) (i * (maasto.length - 1))][(int) (j * (maasto.length-1))];
+        return (korkeus - this.min) / (this.max - this.min);
+    }
+    
+    private RGB sininen = new RGB (0.0, 0.0, 1.0);
+    private RGB vihrea = new RGB (0.0, 1.0, 0.0);
+    private RGB valkoinen = new RGB (1.0, 1.0, 1.0);
+    
+    /**
+     * Antaa pisteen värin. Piste annetaan x- ja y-koordinaatteina väliltä [0.0, 1.0]
+     * 
+     * @param i x-koordnaatti
+     * @param j y-koordinaatti
+     * @return RGB-väri
+     */
+    
+    @Override
+    public RGB getVari(double i, double j) {
+      double a = suhteellinenKorkeus(i, j);
+      if (a < .5)
+        return sininen.summa(vihrea.erotus(sininen).skaalaa((a - 0.0) / 0.5));
+      else
+        return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
     }
     
 }

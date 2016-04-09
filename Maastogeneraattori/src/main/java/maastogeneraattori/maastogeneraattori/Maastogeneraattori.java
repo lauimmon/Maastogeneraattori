@@ -10,6 +10,8 @@ import maastogeneraattori.algoritmit.Perlinkohina;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -17,7 +19,7 @@ import maastogeneraattori.algoritmit.TimanttiNelio;
 import maastogeneraattori.grafiikka.Grafiikka;
 import maastogeneraattori.grafiikka.RGB;
 import maastogeneraattori.laskenta.Kvaternio;
-import maastogeneraattori.laskenta.Maasto;
+import maastogeneraattori.grafiikka.Maailma;
 import maastogeneraattori.laskenta.Vektori;
 
 
@@ -37,7 +39,7 @@ public class Maastogeneraattori {
         
         tn.asetaArvot(0, 1, 0.5);
         
-        Maasto maasto = tn.getMaasto();
+        Maailma maailma = new Maailma(tn);
         
 
         
@@ -47,13 +49,27 @@ public class Maastogeneraattori {
         
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
-        Grafiikka g = new Grafiikka(maasto);
+        Grafiikka g = new Grafiikka(maailma);
         frame.getContentPane().add(g);
         
         frame.pack();
         frame.setVisible(true);
         
         g.piirra();
+        
+        for (int i = 0; i < 18; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Maastogeneraattori.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
+            g.kaanna(0.1, 0);
+            g.piirra();
+        }
+        
+        
     }
     
 }

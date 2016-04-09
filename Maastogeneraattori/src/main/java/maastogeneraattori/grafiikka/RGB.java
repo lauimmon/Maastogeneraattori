@@ -13,19 +13,48 @@ package maastogeneraattori.grafiikka;
 public class RGB {
     private double r, g, b;
     
+    /**
+     * Luo RGB-värin, annettuna arvot punaisen, vihreän ja sinisen osuuksille väliltä [0.0, 1.0]
+     * 
+     * @param r punaisen määrä
+     * @param g vihreän määrä
+     * @param b sinisen määrä
+     */
+    
     public RGB (double r, double g, double b) {
       this.r = r;
       this.g = g;
       this.b = b;
     }
     
+    /**
+     * Laskee kahden värin välisen summan.
+     * 
+     * @param rgb
+     * @return 
+     */
+    
     public RGB summa(RGB rgb) {
       return new RGB (r + rgb.r, g + rgb.g, b + rgb.b);
     }
     
+    /**
+     * Laskee kahden värin välisen erotuksen.
+     * 
+     * @param rgb
+     * @return 
+     */
+    
     public RGB erotus(RGB rgb) {
       return new RGB (r - rgb.r, g - rgb.g, b - rgb.b);
     }
+    
+    /**
+     * Skaalaa värin parametrina annetulla kertoimella.
+     * 
+     * @param skaala kerroin
+     * @return skaalattu väri
+     */
     
     public RGB skaalaa(double skaala) {
       return new RGB (r * skaala, g * skaala, b * skaala);
@@ -38,6 +67,12 @@ public class RGB {
           return 255;
       } else return (int) (arvo * 255.0);
     }
+    
+    /**
+     * Muuttaa värin Integer-arvoksi.
+     * 
+     * @return 
+     */
     
     public int toRGB() {
       return (0xff << 24) | (toInt (r) << 16) |

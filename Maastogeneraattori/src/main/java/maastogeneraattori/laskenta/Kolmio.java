@@ -20,6 +20,17 @@ public class Kolmio {
     private Vektori normaali = new Vektori(0.0, 0.0, 0.0);
     private Color vari;
 
+    /**
+     * Luo Kolmion, jonka kulmien koordinaatit ovat (x1, y1), (x2, y2) ja (x3, y3)
+     * 
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param x3
+     * @param y3 
+     */
+    
     public Kolmio(int x1, int y1, int x2, int y2,
             int x3, int y3) {
         x[0] = x1;
