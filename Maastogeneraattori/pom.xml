@@ -38,9 +38,11 @@
                 <configuration>
                     <targetClasses>
                         <param>maastogeneraattori.algoritmit.*</param>
+                        <param>maastogeneraattori.laskenta.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>maastogeneraattori.algoritmit.*</param>
+                        <param>maastogeneraattori.laskenta.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
