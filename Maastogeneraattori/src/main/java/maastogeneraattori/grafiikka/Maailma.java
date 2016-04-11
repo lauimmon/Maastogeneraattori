@@ -6,7 +6,6 @@
 package maastogeneraattori.grafiikka;
 
 import java.awt.Color;
-import maastogeneraattori.algoritmit.Maasto;
 import maastogeneraattori.grafiikka.RGB;
 import maastogeneraattori.grafiikka.XY;
 import maastogeneraattori.laskenta.Kolmio;
@@ -20,8 +19,8 @@ import maastogeneraattori.laskenta.Vektori;
  * @author lauimmon
  */
 public class Maailma {
-    private Maasto maasto;
-    private double[][] ruudukko;
+    private double[][] maasto;
+    private double min = Double.MAX_VALUE, max = Double.MIN_VALUE;
     private Vektori[][] kartta;
     private Kolmio[] kolmiomaasto;
     private RGB[][] varit;
@@ -34,29 +33,39 @@ public class Maailma {
      * @param maasto jollain algoritmilla luotu maasto, jossa maaston korkeusarvot esitetty ruudukossa
      */
 
-    public Maailma(Maasto maasto) {
+    public Maailma(double[][] maasto) {
         this.maasto = maasto;
-        this.ruudukko = maasto.getMaasto();
-        int k = this.ruudukko.length, l = this.ruudukko[0].length;
+        int k = this.maasto.length, l = this.maasto[0].length;
         this.kartta = new Vektori[k][l];
         this.kolmiomaasto = new Kolmio[(k - 1) * (l - 1) * 2];
         this.varit = new RGB[k][l];
         this.varjot = new double[k][l];
         
-        asetaKarttaJaVarit(k, l, maasto);
+        asetaMinJaMax();
+        
+        asetaKarttaJaVarit();
         
         kolmioiMaasto();
         lisaaVarjot();
         lisaaValo();
     }
+    
+    private void asetaMinJaMax() {
+        for (int i = 0; i < maasto.length; i++) {
+            for (int j = 0; j < maasto[0].length; j++) {
+                min = Math.min(maasto[i][j], min);
+                max = Math.max(maasto[i][j], max);
+            }
+        }
+    }
 
-    private void asetaKarttaJaVarit(int k, int l, Maasto maasto1) {
-        for (int i = 0; i < k; i++) {
-            for (int j = 0; j < l; j++) {
-                double x = (double) i / (k - 1), z = (double) j / (l - 1);
-                double korkeus = maasto1.suhteellinenKorkeus(x, z);
+    private void asetaKarttaJaVarit() {
+        for (int i = 0; i < kartta.length; i++) {
+            for (int j = 0; j < kartta[0].length; j++) {
+                double x = (double) i / (kartta.length - 1), z = (double) j / (kartta[0].length - 1);
+                double korkeus = suhteellinenKorkeus(x, z);
                 kartta[i][j] = new Vektori(x, korkeus * 0.7, z);
-                varit[i][j] = maasto1.getVari(x, z);
+                varit[i][j] = getVari(x, z);
             }
         }
     }
@@ -65,20 +74,16 @@ public class Maailma {
         this.aurinko = aurinko;
     }
     
-    public double getArvo(int i, int j){
-        return ruudukko[i][j];
+    public double getKorkeus(int i, int j){
+        return kartta[i][j].getY();
     }
 
-    public double[][] getMaasto() {
-        return ruudukko;
+    public Vektori[][] getMaasto() {
+        return kartta;
     }
 
     public Kolmio[] getKolmiomaasto() {
         return kolmiomaasto;
-    }
-
-    public Vektori[][] getMaastoVektorit() {
-        return kartta;
     }
     
     public int getPituus() {
@@ -105,8 +110,8 @@ public class Maailma {
         
         Vektori[][] normaalit = new Vektori[getPituus()][getLeveys()];
         
-        for (int i = 0; i < ruudukko.length; i++) {
-            for (int j = 0; j < ruudukko.length; j++) {
+        for (int i = 0; i < getPituus(); i++) {
+            for (int j = 0; j < getLeveys(); j++) {
                 normaalit[i][j] = new Vektori(0.0, 0.0, 0.0);
             }
         }
@@ -146,19 +151,19 @@ public class Maailma {
     }
     
     private void lisaaVarjot() {
-        for (int i = 0; i < ruudukko.length; i++) {
-            for (int j = 0; j < ruudukko[0].length; j++) {
+        for (int i = 0; i < getPituus(); i++) {
+            for (int j = 0; j < getLeveys(); j++) {
                 varjot[i][j] = 1.0;
                 Vektori piste = kartta[i][j];
                 Vektori valo = aurinko.vahenna(piste);
-                double etaisyys = (ruudukko.length - 1) * Math.sqrt(valo.getX() * valo.getX() + valo.getZ() * valo.getZ());
+                double etaisyys = (getPituus()) * Math.sqrt(valo.getX() * valo.getX() + valo.getZ() * valo.getZ());
                 for (int paikka = 1; paikka < etaisyys; paikka++) {
                     Vektori v = piste.lisaa(valo.skaalaa((double) paikka / etaisyys));
                     double sx = v.getX(), sy = v.getY(), sz = v.getZ();
                     if (sx < 0 || sz < 0 || sx > 1.0 || sz > 1.0) {
                         break;
                     }
-                    double maanKorkeus = maasto.suhteellinenKorkeus(sx, sz);
+                    double maanKorkeus = suhteellinenKorkeus(sx, sz);
                     if (maanKorkeus >= sy) {
                         varjot[i][j] = 0.0;
                         break;
@@ -166,5 +171,24 @@ public class Maailma {
                 }
             }   
         }
+    }
+    
+    
+    private double suhteellinenKorkeus(double i, double j) {
+        double korkeus = maasto[(int) (i * (maasto.length - 1))][(int) (j * (maasto.length-1))];
+        return (korkeus - this.min) / (this.max - this.min);
+    }
+    
+    private RGB sininen = new RGB (0.0, 0.0, 1.0);
+    private RGB vihrea = new RGB (0.0, 1.0, 0.0);
+    private RGB valkoinen = new RGB (1.0, 1.0, 1.0);
+    
+    
+    private RGB getVari(double i, double j) {
+      double a = suhteellinenKorkeus(i, j);
+      if (a < .5)
+        return sininen.summa(vihrea.erotus(sininen).skaalaa((a - 0.0) / 0.5));
+      else
+        return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
     }
 }

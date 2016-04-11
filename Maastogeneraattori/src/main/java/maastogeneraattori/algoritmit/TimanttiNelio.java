@@ -9,20 +9,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import maastogeneraattori.grafiikka.RGB;
-import maastogeneraattori.grafiikka.Maailma;
+import maastogeneraattori.laskenta.Vektori;
 
 /**
  * Luokalla generoidaan maasto timantti-neliö-algoritmilla.
  * 
  * @author lauimmon
  */
-public class TimanttiNelio implements Maasto {
+public class TimanttiNelio {
     private double[][] maasto;
-    private double jyrkkyys, min, max;
-    private Random rand;
+    private double jyrkkyys;
+    Random rand = new Random();
     private int iteraariot;
 
     /**
@@ -44,11 +42,7 @@ public class TimanttiNelio implements Maasto {
         }
         iteraariot = i;
         
-        min = Double.MAX_VALUE;
-        max = Double.MIN_VALUE;
-        
         maasto = new double[koko][koko];
-        rand = new Random();
     }
     
     /**
@@ -60,7 +54,8 @@ public class TimanttiNelio implements Maasto {
      * @param jyrkkyys kuvaa maaston jyrkkyyttä. Arvo on liukuluku 0.0 ja 1.0 väliltä. 
      * Tasainen maasto arvolla 0, vuoristoinen maasto arvolla 1.
      */
-    public void asetaArvot(double min, double max, double jyrkkyys) {
+
+    public void luoMaasto(double min, double max, double jyrkkyys) {
         this.jyrkkyys = jyrkkyys;
         
         asetaNurkat(min, max);
@@ -84,8 +79,6 @@ public class TimanttiNelio implements Maasto {
     
     private void asetaArvo(int i, int j, double arvo) {
         maasto[i][j] = arvo;
-        min = Math.min(arvo, min);
-        max = Math.max(arvo, max);
     }
 
     private void jaaKartta(int koko) {
@@ -180,48 +173,12 @@ public class TimanttiNelio implements Maasto {
         }
     }
 
-    @Override
     public double[][] getMaasto() {
         return maasto;
     }
     
     public int getKoko() {
         return maasto.length;
-    }
-    
-    /**
-     * Laskee pisteen (i, j) korkeuden suhteessa maaston maksimi- ja minimikorkeuksiin
-     * 
-     * @param i x-koordinaatti väliltä [0.0, 1.0]
-     * @param j y-koordinaatti väliltä [0.0, 1.0]
-     * @return arvo väliltä [0.0, 1.0], alin kohta 0.0, korkein 1.0
-     */
-    
-    @Override
-    public double suhteellinenKorkeus(double i, double j) {
-        double korkeus = maasto[(int) (i * (maasto.length - 1))][(int) (j * (maasto.length-1))];
-        return (korkeus - this.min) / (this.max - this.min);
-    }
-    
-    private RGB sininen = new RGB (0.0, 0.0, 1.0);
-    private RGB vihrea = new RGB (0.0, 1.0, 0.0);
-    private RGB valkoinen = new RGB (1.0, 1.0, 1.0);
-    
-    /**
-     * Antaa pisteen värin. Piste annetaan x- ja y-koordinaatteina väliltä [0.0, 1.0]
-     * 
-     * @param i x-koordnaatti
-     * @param j y-koordinaatti
-     * @return RGB-väri
-     */
-    
-    @Override
-    public RGB getVari(double i, double j) {
-      double a = suhteellinenKorkeus(i, j);
-      if (a < .5)
-        return sininen.summa(vihrea.erotus(sininen).skaalaa((a - 0.0) / 0.5));
-      else
-        return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
     }
     
 }

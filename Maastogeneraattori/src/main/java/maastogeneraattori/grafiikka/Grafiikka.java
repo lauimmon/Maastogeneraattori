@@ -38,6 +38,12 @@ public class Grafiikka extends JPanel{
         luoPiirrettavaKartta();
     }
     
+    public void setMaailma(Maailma maailma) {
+        this.maailma = maailma;
+        
+        luoPiirrettavaKartta();
+    }
+    
     private void luoPiirrettavaKartta() {
         Vektori[][] katsojanNakyma = katsojanNakyma(maailma);
         
@@ -65,7 +71,7 @@ public class Grafiikka extends JPanel{
         
         for (int i = 0; i < maailma.getPituus(); i++) {
             for (int j = 0; j < maailma.getLeveys(); j++) {
-                Vektori p = maailma.getMaastoVektorit()[i][j];
+                Vektori p = maailma.getMaasto()[i][j];
                 Vektori t = p.vahenna(katsojanPaikka);
                 Vektori r = katsojanSuunta.kaanna(t);
                 katsojanNakyma[i][j] = r;
@@ -99,7 +105,7 @@ public class Grafiikka extends JPanel{
             XY xy0 = piirrettava[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)];
             XY xy1 = piirrettava[k.getXKoordinaatti(1)][k.getYKoordinaatti(1)];
             XY xy2 = piirrettava[k.getXKoordinaatti(2)][k.getYKoordinaatti(2)];
-            double pistetulo = - maailma.getMaastoVektorit()[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)].vahenna(katsojanPaikka).normalisoi().pistetulo(k.getNormaali());
+            double pistetulo = - maailma.getMaasto()[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)].vahenna(katsojanPaikka).normalisoi().pistetulo(k.getNormaali());
             if (pistetulo > 0.0) {
                 int[] x = {xy0.x, xy1.x, xy2.x}, y = {xy0.y, xy1.y, xy2.y};
                 g.setColor(k.getVari());
