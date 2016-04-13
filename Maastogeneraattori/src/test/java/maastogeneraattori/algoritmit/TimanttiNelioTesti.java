@@ -64,7 +64,7 @@ public class TimanttiNelioTesti {
     public void asettaaNurkatOikein(){
         boolean vaarinAsetettu = false;
         for (int i = 0; i < 1000; i++) {
-            tn.asetaArvot(0, 1, 1);
+            tn.luoMaasto(0, 1, 1);
             double[][] ruudukko = tn.getMaasto();
             if (ruudukko[0][0] < 0 || ruudukko[0][0] > 1) {
                 vaarinAsetettu = true;
@@ -93,7 +93,7 @@ public class TimanttiNelioTesti {
         
         for (int i = 0; i < 100; i++) {
             tn = new TimanttiNelio(i);
-            tn.asetaArvot(10000, 10001, 0.1);
+            tn.luoMaasto(10000, 10001, 0.1);
             double[][] r = tn.getMaasto();
 
             for (double[] rivi : r) {
