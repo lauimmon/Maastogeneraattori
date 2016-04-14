@@ -61,7 +61,7 @@ public class TimanttiNelioTesti {
     }
     
     @Test
-    public void asettaaNurkatOikein(){
+    public void asettaaNurkatOikein1(){
         boolean vaarinAsetettu = false;
         for (int i = 0; i < 1000; i++) {
             tn.luoMaasto(0, 1, 1);
