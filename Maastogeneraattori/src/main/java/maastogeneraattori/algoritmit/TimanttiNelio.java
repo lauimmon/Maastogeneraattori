@@ -26,10 +26,20 @@ public class TimanttiNelio {
     /**
      * Luo taulukon, johon myöhemmin sijoitetaan timantti-neliö-algoritmilla tuotetut korkeusarvot.
      * 
-     * @param i on haluttu kokoluokka maastolle. Luotavan maaston kooksi tulee 2^i + 1
+     * @param koko on haluttu kokoluokka maastolle. Luodussa maastossa on 
+     * (2^n + 1)*(2^n + 1) pistettä, jossa n on kokonaisluku, jolla 2^n + 1 >= koko.
+     * Luodun maaston koko on siis syötetty arvo koko, tai suurempi, mutta kuitenkin
+     * korkeintaan kaksi kertaa suurempi.
      */
-    public TimanttiNelio(int i) {
-        int koko = (int) Math.pow(2, i) + 1;
+    public TimanttiNelio(int koko) {
+        int i = 0;
+        while (true) {
+            if (Math.pow(2, i) + 1 >= koko) {
+                koko = (int) Math.pow(2, i) + 1;
+                break;
+            }
+            i++;
+        }
         iteraariot = i;
         
         maasto = new double[koko][koko];

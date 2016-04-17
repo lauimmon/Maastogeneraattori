@@ -158,7 +158,7 @@ public class Maailma {
                 Vektori valo = aurinko.vahenna(piste);
                 double etaisyys = (getPituus()) * Math.sqrt(valo.getX() * valo.getX() + valo.getZ() * valo.getZ());
                 for (int paikka = 1; paikka < etaisyys; paikka++) {
-                    Vektori v = piste.lisaa(valo.kerro((double) paikka / etaisyys));
+                    Vektori v = piste.lisaa(valo.skaalaa((double) paikka / etaisyys));
                     double sx = v.getX(), sy = v.getY(), sz = v.getZ();
                     if (sx < 0 || sz < 0 || sx > 1.0 || sz > 1.0) {
                         break;

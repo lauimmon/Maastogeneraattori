@@ -38,7 +38,7 @@ public class Perlinkohina {
         }
     }
     
-    public double[][] maasto(int n, int x1, int y1) {
+    public double[][] luoMaasto(int n, int x1, int y1) {
         double[][] maasto = new double[n][n];
         
         for (int i = 0; i < n; i++) {
@@ -52,6 +52,7 @@ public class Perlinkohina {
     
     public double perlin2D(double x, double y) {
         double yht = 0;
+        
         double p = .345;
         int n = 10;
         
@@ -101,37 +102,37 @@ public class Perlinkohina {
         return a * (1 - x) + b * x;
     }
     
-    /**
-     * Luo nxn korkeuskartan. Funktio käyttää tähän satunnaisvektoreita koordinaateista
-     * (x1, y1), (x1 + 1, y1), (x1, y1 + 1), (x1 + 1, y1 + 1)
-     * 
-     * @param n kartan koko
-     * @param x1 alavasemman x-koordinaatti
-     * @param y1 alavasemman y-koordinaatti
-     * @return korkeuskartta
-     */
-    
-    public double[][] luoMaasto(int n, int x1, int y1) {
-        double[][] maasto = new double[n][n];
-        
-        double p = .5;
-        int o = 6;
-        
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < o; k++) {
-                    double f = Math.pow(2, i);
-                    double a = Math.pow(p, i);
-                    maasto[i][j] = maasto[i][j] + perlin(((double) x1 + (double) (i * 2 + 1) / (2 * n)) * f, ((double) y1 + (double) (j * 2 + 1) / (2 * n)) * f) * a;
-                }
-            }
-        }
-        
-        return maasto;
-    }
-    
-    
-
+//    /**
+//     * Luo nxn korkeuskartan. Funktio käyttää tähän satunnaisvektoreita koordinaateista
+//     * (x1, y1), (x1 + 1, y1), (x1, y1 + 1), (x1 + 1, y1 + 1)
+//     * 
+//     * @param n kartan koko
+//     * @param x1 alavasemman x-koordinaatti
+//     * @param y1 alavasemman y-koordinaatti
+//     * @return korkeuskartta
+//     */
+//    
+//    public double[][] luoMaasto(int n, int x1, int y1) {
+//        double[][] maasto = new double[n][n];
+//        
+//        double p = .5;
+//        int o = 6;
+//        
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n; j++) {
+//                for (int k = 0; k < o; k++) {
+//                    double f = Math.pow(2, i);
+//                    double a = Math.pow(p, i);
+//                    maasto[i][j] = maasto[i][j] + perlin(((double) x1 + (double) (i * 2 + 1) / (2 * n)) * f, ((double) y1 + (double) (j * 2 + 1) / (2 * n)) * f) * a;
+//                }
+//            }
+//        }
+//        
+//        return maasto;
+//    }
+//    
+//    
+//
     private Vektori luoRandomYksikkoVektori() {
         Random rand = new Random();
         
@@ -139,44 +140,44 @@ public class Perlinkohina {
         
         return new Vektori(Math.cos(kulma), Math.sin(kulma));
     }
-    
-    private double lineaarinenInterpolointi(double a1, double a2, double paino) {
-        return (1.0 - paino) * a1 + paino * a2;
-    }
-    
-    private double perlin(double x, double y) {
-        int x0 = (int) Math.floor(x);
-        int y0 = (int) Math.floor(y);
-        
-        double sx = x - (double) x0;
-        double sy = y - (double) y0;
-        
-        Vektori v1 = new Vektori(x - (double) x0, y - (double) y0);
-        Vektori v2 = new Vektori(x - (double) x0 + 1, y - (double) y0);
-        Vektori v3 = new Vektori(x - (double) x0, y - (double) y0 + 1);
-        Vektori v4 = new Vektori(x - (double) x0 + 1, y - (double) y0 + 1);
-        
-        double n00 = v1.pistetulo(satunnaisvektorit[x0][y0]);
-        double n10 = v2.pistetulo(satunnaisvektorit[x0 + 1][y0]);
-        double n01 = v3.pistetulo(satunnaisvektorit[x0][y0 + 1]);
-        double n11 = v4.pistetulo(satunnaisvektorit[x0 + 1][y0 + 1]);
-        
-        //sx = haivyta(sx);
-        //sy = haivyta(sy);
-        
-        double nx0 = lineaarinenInterpolointi(n00, n10, sx);
-        double nx1 = lineaarinenInterpolointi(n01, n11, sx);
-        
-        return lineaarinenInterpolointi(nx0, nx1, sy);
-    }
-
-    private double haivyta(double i) {
-        return i * i * i * (10 + i * (-15 + i * 6));
-    }
-
-    public Vektori[][] getRandomVektorit() {
-        return satunnaisvektorit;
-    }
-    
+//    
+//    private double lineaarinenInterpolointi(double a1, double a2, double paino) {
+//        return (1.0 - paino) * a1 + paino * a2;
+//    }
+//    
+//    private double perlin(double x, double y) {
+//        int x0 = (int) Math.floor(x);
+//        int y0 = (int) Math.floor(y);
+//        
+//        double sx = x - (double) x0;
+//        double sy = y - (double) y0;
+//        
+//        Vektori v1 = new Vektori(x - (double) x0, y - (double) y0);
+//        Vektori v2 = new Vektori(x - (double) x0 + 1, y - (double) y0);
+//        Vektori v3 = new Vektori(x - (double) x0, y - (double) y0 + 1);
+//        Vektori v4 = new Vektori(x - (double) x0 + 1, y - (double) y0 + 1);
+//        
+//        double n00 = v1.pistetulo(satunnaisvektorit[x0][y0]);
+//        double n10 = v2.pistetulo(satunnaisvektorit[x0 + 1][y0]);
+//        double n01 = v3.pistetulo(satunnaisvektorit[x0][y0 + 1]);
+//        double n11 = v4.pistetulo(satunnaisvektorit[x0 + 1][y0 + 1]);
+//        
+//        //sx = haivyta(sx);
+//        //sy = haivyta(sy);
+//        
+//        double nx0 = lineaarinenInterpolointi(n00, n10, sx);
+//        double nx1 = lineaarinenInterpolointi(n01, n11, sx);
+//        
+//        return lineaarinenInterpolointi(nx0, nx1, sy);
+//    }
+//
+//    private double haivyta(double i) {
+//        return i * i * i * (10 + i * (-15 + i * 6));
+//    }
+//
+//    public Vektori[][] getRandomVektorit() {
+//        return satunnaisvektorit;
+//    }
+//    
     
 }

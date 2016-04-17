@@ -16,11 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Perus
  */
-public class VektoriTesti {
+public class KolmioTesti {
     
-    private Vektori v;
-    
-    public VektoriTesti() {
+    public KolmioTesti() {
     }
     
     @BeforeClass
@@ -33,16 +31,15 @@ public class VektoriTesti {
     
     @Before
     public void setUp() {
-        v = new Vektori(2.0, 1.0, 3.5);
     }
     
     @After
     public void tearDown() {
     }
-    
-    @Test
-    public void skaalaauksenTulosOikeanPituinen() {
-        Vektori v1 = v.skaalaa(4);
-        assertTrue(v1.pituus()/v.pituus() == 4);
-    }
+
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 }
