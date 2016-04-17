@@ -101,7 +101,7 @@ public class Vektori {
      */
     
     public Vektori normalisoi() {
-        return skaalaa(1.0 / this.pituus());
+        return kerro(1.0 / this.pituus());
     }
 
     /**
@@ -111,7 +111,7 @@ public class Vektori {
      * @return 
      */
     
-    public Vektori skaalaa(double skaala) {
+    public Vektori kerro(double skaala) {
         return new Vektori(x * skaala, y * skaala, z * skaala);
     }
 

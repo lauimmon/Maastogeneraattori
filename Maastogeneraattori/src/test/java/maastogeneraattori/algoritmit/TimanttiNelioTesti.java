@@ -36,7 +36,7 @@ public class TimanttiNelioTesti {
     
     @Before
     public void setUp() {
-        tn = new TimanttiNelio(9);
+        tn = new TimanttiNelio(4);
     }
     
     @After
@@ -44,20 +44,8 @@ public class TimanttiNelioTesti {
     }
     
     @Test
-    public void luoOikeanKokoisenRuudukonKunKoko9() {
-        assertEquals(tn.getMaasto().length, 9);
-    }
-
-    @Test
-    public void luoOikeanKokoisenRuudukonKunKoko100() {
-        tn = new TimanttiNelio(100);
-        assertEquals(tn.getMaasto().length, 129);
-    }
-    
-    @Test
-    public void luoOikeanKokoisenRuudukonKunKoko1() {
-        tn = new TimanttiNelio(1);
-        assertEquals(tn.getMaasto().length, 2);
+    public void luoOikeanKokoisenRuudukon() {
+        assertEquals(tn.getMaasto().length, 16);
     }
     
     @Test

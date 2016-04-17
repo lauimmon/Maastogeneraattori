@@ -41,8 +41,8 @@ public class VektoriTesti {
     }
     
     @Test
-    public void skaalaauksenTulosOikeanPituinen() {
-        Vektori v1 = v.skaalaa(4);
+    public void kertolaskunTulosOikein() {
+        Vektori v1 = v.kerro(4);
         assertTrue(v1.pituus()/v.pituus() == 4);
     }
 }
