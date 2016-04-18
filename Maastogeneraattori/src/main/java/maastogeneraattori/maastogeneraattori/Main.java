@@ -27,45 +27,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TimanttiNelio m = new TimanttiNelio(10);
-        
-        m.luoMaasto(0, 1, 1.0);
-        
-        Maailma maailma = new Maailma(m.getMaasto());
-
-        
-        JFrame frame = new JFrame("Maasto");
-        
-        frame.setPreferredSize(new Dimension(1000, 1000));
-        
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-        Grafiikka g = new Grafiikka(maailma);
-        frame.getContentPane().add(g);
-        
-        frame.pack();
-        frame.setVisible(true);
-        
-        g.piirra();
-        
-        for (int i = 0; i < 18; i++) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-            g.kaanna(0.1, 0);
-            g.piirra();
-        }
-        
-        //---------------------------------------------//
-        
-//        Perlinkohina p = new Perlinkohina(100);
+//        TimanttiNelio m = new TimanttiNelio(10);
 //        
-//        Maailma maailma = new Maailma(p.luoMaasto(3, 50, 50));
-//    
+//        m.luoMaasto(0, 1, 1.0);
+//        
+//        Maailma maailma = new Maailma(m.getMaasto());
+//
+//        
 //        JFrame frame = new JFrame("Maasto");
 //        
 //        frame.setPreferredSize(new Dimension(1000, 1000));
@@ -82,15 +50,51 @@ public class Main {
 //        
 //        for (int i = 0; i < 18; i++) {
 //            try {
-//                Thread.sleep(1000);
+//                Thread.sleep(500);
 //            } catch (InterruptedException ex) {
 //                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //
 //
-//            g.setMaailma(new Maailma(p.luoMaasto(50, 500 + i, 500)));
+//            g.kaanna(0.1, 0);
 //            g.piirra();
 //        }
+        
+        //---------------------------------------------//
+        
+        Perlinkohina p = new Perlinkohina(100);
+        
+        Maailma maailma = new Maailma(p.luoMaasto(50, 50, 50, 55, 55));
+    
+        JFrame frame = new JFrame("Maasto");
+        
+        frame.setPreferredSize(new Dimension(1000, 1000));
+        
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        Grafiikka g = new Grafiikka(maailma);
+        frame.getContentPane().add(g);
+        
+        frame.pack();
+        frame.setVisible(true);
+        
+        g.piirra();
+        
+        for (int i = 0; i < 18; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
+//            g.setMaailma(new Maailma(p.luoMaasto(50, 500 + i, 500)));
+            g.piirra();
+        }
+        
+        
+        
+        
     }
     
 }
