@@ -8,6 +8,8 @@ package maastogeneraattori.grafiikka;
 
 
 import java.awt.Graphics;
+import java.util.Collections;
+import java.util.PriorityQueue;
 import javax.swing.JPanel;
 import maastogeneraattori.laskenta.Kolmio;
 import maastogeneraattori.laskenta.Kvaternio;
@@ -47,13 +49,14 @@ public class Grafiikka extends JPanel{
     private void luoPiirrettavaKartta() {
         Vektori[][] katsojanNakyma = katsojanNakyma(maailma);
         
+        
         double etaisyys = 0.1;
         double nakyma = Math.PI / 3;
         piirrettava = new XY[maailma.getPituus()][maailma.getLeveys()];
         int leveys = 1000, korkeus = 1000;
         double skaala = leveys / 2 / Math.tan(nakyma / 2);
-        for (int i = 0; i < maailma.getPituus(); i++) {
-            for (int j = 0; j < maailma.getLeveys(); j++) {
+        for (int i = 0; i < katsojanNakyma.length; i++) {
+            for (int j = 0; j < katsojanNakyma[0].length; j++) {
                 Vektori p = katsojanNakyma[i][j];
                 double x = p.getX(), y = p.getY(), z = p.getZ();
                 if (z >= etaisyys) {
@@ -99,14 +102,17 @@ public class Grafiikka extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        for (int i = 0; i < maailma.getKolmiomaasto().length; i++) {
-            Kolmio k = maailma.getKolmiomaasto()[i];
+        Kolmio[] kolmiot = maailma.getKolmiomaasto();
+        
+        for (int i = 0; i < kolmiot.length; i++) {
+            Kolmio k = kolmiot[kolmiot.length - 1 - i];
             
             XY xy0 = piirrettava[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)];
             XY xy1 = piirrettava[k.getXKoordinaatti(1)][k.getYKoordinaatti(1)];
             XY xy2 = piirrettava[k.getXKoordinaatti(2)][k.getYKoordinaatti(2)];
             double pistetulo = - maailma.getMaasto()[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)].vahenna(katsojanPaikka).normalisoi().pistetulo(k.getNormaali());
-            if (pistetulo > 0.0) {
+            
+            if (pistetulo > 0) {
                 int[] x = {xy0.x, xy1.x, xy2.x}, y = {xy0.y, xy1.y, xy2.y};
                 g.setColor(k.getVari());
                 g.fillPolygon(x, y, 3);

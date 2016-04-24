@@ -62,9 +62,11 @@ public class Main {
         
         //---------------------------------------------//
         
-        Perlinkohina p = new Perlinkohina(100);
+        Perlinkohina p = new Perlinkohina(5, 100);
         
-        Maailma maailma = new Maailma(p.luoMaasto(50, 50, 50, 55, 55));
+        Maailma maailma = new Maailma(p.luoMaasto(500, 0, 0, 4, 4));
+
+        
     
         JFrame frame = new JFrame("Maasto");
         

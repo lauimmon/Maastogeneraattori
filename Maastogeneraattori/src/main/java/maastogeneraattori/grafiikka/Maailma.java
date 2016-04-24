@@ -163,7 +163,7 @@ public class Maailma {
                     if (sx < 0 || sz < 0 || sx > 1.0 || sz > 1.0) {
                         break;
                     }
-                    double maanKorkeus = suhteellinenKorkeus(sx, sz);
+                    double maanKorkeus = 0.7 * suhteellinenKorkeus(sx, sz);
                     if (maanKorkeus >= sy) {
                         varjot[i][j] = 0.0;
                         break;

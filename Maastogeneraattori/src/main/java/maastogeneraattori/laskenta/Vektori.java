@@ -5,12 +5,14 @@
  */
 package maastogeneraattori.laskenta;
 
+import java.util.Comparator;
+
 /**
  * Vektoriluokan avulla voi tehdä laskutoimituksia vektoreilla.
  * 
  * @author lauimmon
  */
-public class Vektori {
+public class Vektori implements Comparable<Vektori> {
     private double x, y, z;
 
     /**
@@ -125,5 +127,17 @@ public class Vektori {
 
     public double getZ() {
         return z;
+    }
+
+    @Override
+    public int compareTo(Vektori v) {
+        double erotus = this.pituus() - v.pituus();
+        if (erotus < 0) {
+            return -1;
+        }
+        if (erotus > 0) {
+            return 1;
+        }
+        return 0;
     }
 }

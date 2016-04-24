@@ -21,26 +21,111 @@ import maastogeneraattori.laskenta.Vektori;
 public class Perlinkohina {
     
     private Vektori[][] satunnaisvektorit;
+    private Random rand = new Random();
 
     /**
      * Tehdään perusta vektoriruudukolle. Jokainen ruudukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
      * 
      * @param n ruudukon koko
+     * @param vaihtelu nurkka-arvojen vaihteluväli
      */
     
-    public Perlinkohina(int n) {
+    public Perlinkohina(int n, double vaihtelu) {
         satunnaisvektorit = new Vektori[n][n];
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                satunnaisvektorit[i][j] = luoRandomYksikkoVektori();
+                satunnaisvektorit[i][j] = luoRandomYksikkovektori();
             }
         }
+        
+//        double x = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        double y = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        
+//        satunnaisvektorit[0][0] = new Vektori(x,y);
+//        
+//        x = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        y = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        
+//        satunnaisvektorit[0][n - 1] = new Vektori(x,y);
+//        
+//        x = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        y = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        
+//        satunnaisvektorit[n - 1][0] = new Vektori(x,y);
+//        
+//        x = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        y = rand.nextDouble() * 2 * vaihtelu - vaihtelu;
+//        
+//        satunnaisvektorit[n - 1][n - 1] = new Vektori(x,y);
+//        
+//        jaaKartta(n - 1);
     }
     
-    private Vektori luoRandomYksikkoVektori() {
-        Random rand = new Random();
+    private void jaaKartta(int koko) {
+        int puolet = koko / 2;
+        if (puolet < 1) {
+            return;
+        }
         
+        for (int y = puolet; y < satunnaisvektorit.length - 1; y += koko) {
+            for (int x = puolet; x < satunnaisvektorit.length - 1; x += koko) {
+                nelioaskel(x, y, puolet);
+            }
+        }
+        
+        for (int y = 0; y < satunnaisvektorit.length; y += puolet) {
+            for (int x = (y + puolet) % koko; x < satunnaisvektorit.length; x += koko) {
+                timanttiaskel(x, y, puolet);
+            }
+        }
+        
+        jaaKartta(puolet);
+    }
+    
+    private void nelioaskel(int x, int y, int koko) {
+        Vektori yht = satunnaisvektorit[x + koko][y + koko];
+        yht = yht.lisaa(satunnaisvektorit[x + koko][y - koko]);
+        yht = yht.lisaa(satunnaisvektorit[x - koko][y + koko]);
+        yht = yht.lisaa(satunnaisvektorit[x - koko][y - koko]);
+        yht = yht.skaalaa(0.25);
+        satunnaisvektorit[x][y] = yht.lisaa(luoRandomYksikkovektori());
+    }
+    
+    private void timanttiaskel(int x, int y, int koko) {
+        Vektori yht = new Vektori(0, 0);
+        int i = 0;
+        if (y - koko >= 0) {
+            yht = yht.lisaa(satunnaisvektorit[x][y - koko]);
+            i++;
+        }
+        if (x + koko < satunnaisvektorit.length) {
+            yht = yht.lisaa(satunnaisvektorit[x + koko][y]);
+            i++;
+        }
+        if (y + koko < satunnaisvektorit.length) {
+            yht = yht.lisaa(satunnaisvektorit[x][y + koko]);
+            i++;
+        }
+        if (x - koko >= 0) {
+            yht = yht.lisaa(satunnaisvektorit[x - koko][y]);
+            i++;
+        }
+        yht = yht.skaalaa(1.0 / i);
+        satunnaisvektorit[x][y] = yht.lisaa(luoRandomYksikkovektori());
+    }
+    
+//    public Perlinkohina(double[][] kartta) {
+//        satunnaisvektorit = new Vektori[kartta.length][kartta[0].length];
+//        
+//        for (int i = 0; i < kartta.length; i++) {
+//            for (int j = 0; j < kartta[0].length; j++) {
+//                satunnaisvektorit[i][j] = new Vektori();
+//            }
+//        }
+//    }
+    
+    private Vektori luoRandomYksikkovektori() {
         double kulma = rand.nextDouble() * 2 * Math.PI;
         
         return new Vektori(Math.cos(kulma), Math.sin(kulma));
