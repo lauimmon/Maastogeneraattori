@@ -7,3 +7,9 @@ Perlin-kohinan pähkäilyä. Yksi virhe löytyi koodista, nyt tulee oikeanlaista
 **23.4.**
 
 Perlin-kohinalla kokeilua ja grafiikan kehittämistä. Työmäärä kolme tuntia
+
+**25.4.**
+
+Testien ja dokumenttien tekoa. Työmäärä kaksi tuntia.
+
+**Viikon työmäärä 7 tuntia**
