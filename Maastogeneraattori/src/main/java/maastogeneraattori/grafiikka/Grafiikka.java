@@ -7,6 +7,7 @@ package maastogeneraattori.grafiikka;
 
 
 
+import maastogeneraattori.maailma.Maailma;
 import java.awt.Graphics;
 import java.util.Collections;
 import java.util.PriorityQueue;

@@ -39,10 +39,12 @@
                     <targetClasses>
                         <param>maastogeneraattori.algoritmit.*</param>
                         <param>maastogeneraattori.laskenta.*</param>
+                        <param>maastogeneraattori.maailma.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>maastogeneraattori.algoritmit.*</param>
                         <param>maastogeneraattori.laskenta.*</param>
+                        <param>maastogeneraattori.maailma.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

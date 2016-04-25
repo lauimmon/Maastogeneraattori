@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maastogeneraattori.laskenta;
+package maastogeneraattori.algoritmit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,11 +16,12 @@ import static org.junit.Assert.*;
  *
  * @author Perus
  */
-public class VektoriTesti {
+public class PerlinTest {
     
-    private Vektori v;
+    private Perlin p;
+    private int koko = 10;
     
-    public VektoriTesti() {
+    public PerlinTest() {
     }
     
     @BeforeClass
@@ -33,16 +34,28 @@ public class VektoriTesti {
     
     @Before
     public void setUp() {
-        v = new Vektori(2.0, 1.0, 3.5);
+        p = new Perlin(koko);
     }
     
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void skaalaauksenTulosOikeanPituinen() {
-        Vektori v1 = v.skaalaa(4);
-        assertTrue(v1.pituus()/v.pituus() == 4);
+    public void asettaaSatunnaisvektorit() {
+        boolean asetettu = true;
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
+                if (p.getRandomVektorit()[i][j] == null) {
+                    asetettu = false;
+                    break;
+                }
+            }
+            if (!asetettu) {
+                break;
+            }
+        }
+        assertTrue(asetettu);
     }
+    
 }

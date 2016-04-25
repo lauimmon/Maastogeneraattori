@@ -6,14 +6,14 @@
 package maastogeneraattori.maastogeneraattori;
 
 import java.awt.Dimension;
-import maastogeneraattori.algoritmit.Perlinkohina;
+import maastogeneraattori.algoritmit.Perlin;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import maastogeneraattori.algoritmit.TimanttiNelio;
 import maastogeneraattori.grafiikka.Grafiikka;
-import maastogeneraattori.grafiikka.Maailma;
+import maastogeneraattori.maailma.Maailma;
 
 
 
@@ -62,7 +62,7 @@ public class Main {
         
         //---------------------------------------------//
         
-        Perlinkohina p = new Perlinkohina(5, 100);
+        Perlin p = new Perlin(5);
         
         Maailma maailma = new Maailma(p.luoMaasto(500, 0, 0, 4, 4));
 

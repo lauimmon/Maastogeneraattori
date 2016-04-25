@@ -12,7 +12,7 @@ import java.util.Comparator;
  * 
  * @author lauimmon
  */
-public class Vektori implements Comparable<Vektori> {
+public class Vektori {
     private double x, y, z;
 
     /**
@@ -127,17 +127,5 @@ public class Vektori implements Comparable<Vektori> {
 
     public double getZ() {
         return z;
-    }
-
-    @Override
-    public int compareTo(Vektori v) {
-        double erotus = this.pituus() - v.pituus();
-        if (erotus < 0) {
-            return -1;
-        }
-        if (erotus > 0) {
-            return 1;
-        }
-        return 0;
     }
 }

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maastogeneraattori.grafiikka;
+package maastogeneraattori.maailma;
 
 import java.awt.Color;
+import maastogeneraattori.grafiikka.RGB;
 import maastogeneraattori.grafiikka.RGB;
 import maastogeneraattori.grafiikka.XY;
 import maastogeneraattori.laskenta.Kolmio;
@@ -68,30 +69,6 @@ public class Maailma {
                 varit[i][j] = getVari(x, z);
             }
         }
-    }
-
-    public void setAurinko(Vektori aurinko) {
-        this.aurinko = aurinko;
-    }
-    
-    public double getKorkeus(int i, int j){
-        return kartta[i][j].getY();
-    }
-
-    public Vektori[][] getMaasto() {
-        return kartta;
-    }
-
-    public Kolmio[] getKolmiomaasto() {
-        return kolmiomaasto;
-    }
-    
-    public int getPituus() {
-        return getMaasto().length;
-    }
-    
-    public int getLeveys() {
-        return getMaasto()[0].length;
     }
     
     private void kolmioiMaasto() {
@@ -191,4 +168,54 @@ public class Maailma {
       else
         return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
     }
+
+    public void setAurinko(Vektori aurinko) {
+        this.aurinko = aurinko;
+    }
+    
+    public double getKorkeus(int i, int j){
+        return kartta[i][j].getY();
+    }
+
+    public Vektori[][] getMaasto() {
+        return kartta;
+    }
+
+    public Kolmio[] getKolmiomaasto() {
+        return kolmiomaasto;
+    }
+    
+    public int getPituus() {
+        return getMaasto().length;
+    }
+    
+    public int getLeveys() {
+        return getMaasto()[0].length;
+    }
+
+    public double getMin() {
+        return min;
+    }
+
+    public double getMax() {
+        return max;
+    }
+
+    public Vektori[][] getKartta() {
+        return kartta;
+    }
+
+    public RGB[][] getVarit() {
+        return varit;
+    }
+
+    public Vektori getAurinko() {
+        return aurinko;
+    }
+
+    public double[][] getVarjot() {
+        return varjot;
+    }
+    
+    
 }

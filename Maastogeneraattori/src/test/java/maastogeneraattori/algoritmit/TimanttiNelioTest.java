@@ -19,11 +19,11 @@ import static org.junit.Assert.*;
  *
  * @author Perus
  */
-public class TimanttiNelioTesti {
+public class TimanttiNelioTest {
     
     private TimanttiNelio tn;
     
-    public TimanttiNelioTesti() {
+    public TimanttiNelioTest() {
     }
     
     @BeforeClass

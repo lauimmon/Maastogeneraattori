@@ -6,7 +6,7 @@
 package maastogeneraattori.algoritmit;
 
 import java.util.Random;
-import maastogeneraattori.grafiikka.Maailma;
+import maastogeneraattori.maailma.Maailma;
 import maastogeneraattori.grafiikka.RGB;
 import maastogeneraattori.laskenta.Vektori;
 
@@ -18,7 +18,7 @@ import maastogeneraattori.laskenta.Vektori;
  *
  * @author lauimmon
  */
-public class Perlinkohina {
+public class Perlin {
     
     private Vektori[][] satunnaisvektorit;
     private Random rand = new Random();
@@ -30,7 +30,7 @@ public class Perlinkohina {
      * @param vaihtelu nurkka-arvojen vaihteluväli
      */
     
-    public Perlinkohina(int n, double vaihtelu) {
+    public Perlin(int n) {
         satunnaisvektorit = new Vektori[n][n];
         
         for (int i = 0; i < n; i++) {
