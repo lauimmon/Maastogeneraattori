@@ -10,6 +10,6 @@ Perlin-kohinalla kokeilua ja grafiikan kehittämistä. Työmäärä kolme tuntia
 
 **25.4.**
 
-Testien ja dokumenttien tekoa. Työmäärä kaksi tuntia.
+Testien ja dokumenttien tekoa. Työmäärä 2,5 tuntia.
 
-**Viikon työmäärä 7 tuntia**
+**Viikon työmäärä 7,5 tuntia**
