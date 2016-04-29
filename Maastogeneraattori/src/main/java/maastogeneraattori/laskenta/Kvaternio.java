@@ -40,8 +40,16 @@ public class Kvaternio {
      */
     
     public Kvaternio kaanteinen() {
-        double skaala = 1.0 / (x * x + y * y + z * z + w * w);
-        return new Kvaternio(w * skaala, - x * skaala, - y * skaala, - z * skaala);
+        double x2 = x * x;
+        double y2 = y * y;
+        double z2 = z * z;
+        double w2 = w * w;
+        double skaala = 1.0 / (x2 + y2 + z2 + w2);
+        double xUusi = - x * skaala;
+        double yUusi = - y * skaala;
+        double zUusi = - z * skaala;
+        double wUusi = w * skaala;
+        return new Kvaternio(wUusi, xUusi, yUusi, zUusi);
     }
     
     /**
@@ -82,5 +90,21 @@ public class Kvaternio {
         double cos = Math.cos (r / 2.0);
         double vali = sin / d;
         return new Kvaternio(cos, x * vali, y * vali, z * vali);
+    }
+
+    public double getW() {
+        return w;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
     }
 }

@@ -36,6 +36,9 @@ public class Perlin {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 satunnaisvektorit[i][j] = luoRandomYksikkovektori();
+                for (int k = 0; k < i + j; k++) {
+                    satunnaisvektorit[i][j] = satunnaisvektorit[i][j].lisaa(luoRandomYksikkovektori());
+                }
             }
         }
         

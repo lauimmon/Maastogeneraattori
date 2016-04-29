@@ -6,6 +6,7 @@
 package maastogeneraattori.maastogeneraattori;
 
 import java.awt.Dimension;
+import java.util.Random;
 import maastogeneraattori.algoritmit.Perlin;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        TimanttiNelio m = new TimanttiNelio(10);
+//        TimanttiNelio m = new TimanttiNelio(100);
 //        
 //        m.luoMaasto(0, 1, 1.0);
 //        
@@ -56,15 +57,38 @@ public class Main {
 //            }
 //
 //
-//            g.kaanna(0.1, 0);
+//            g.liikutaKatsojaa(0, -0.2, 0.2);
 //            g.piirra();
 //        }
         
         //---------------------------------------------//
         
-        Perlin p = new Perlin(5);
+        int perlinKoko = 100;
+        int maastoKoko = 200;
         
-        Maailma maailma = new Maailma(p.luoMaasto(500, 0, 0, 4, 4));
+        Perlin p1 = new Perlin(perlinKoko);
+        Perlin p2 = new Perlin(perlinKoko);
+        Perlin p3 = new Perlin(perlinKoko);
+        Perlin p4 = new Perlin(perlinKoko);
+        Perlin p5 = new Perlin(perlinKoko);
+        
+        double[][] maasto1 = p1.luoMaasto(maastoKoko, 0, 0, 63, 63);
+        double[][] maasto2 = p2.luoMaasto(maastoKoko, 0, 0, 31, 31);
+        double[][] maasto3 = p3.luoMaasto(maastoKoko, 0, 0, 15, 15);
+        double[][] maasto4 = p4.luoMaasto(maastoKoko, 0, 0, 7, 7);
+        double[][] maasto5 = p5.luoMaasto(maastoKoko, 0, 0, 3, 3);
+
+        double[][] maasto = maasto5;
+        
+
+        
+        for (int i = 0; i < maastoKoko / 2; i++) {
+            for (int j = 0; j < maastoKoko / 2; j++) {
+                maasto[i][j] = maasto[i][j] + maasto4[i][j];
+            }
+        }
+        
+        Maailma maailma = new Maailma(maasto);
 
         
     
@@ -82,7 +106,7 @@ public class Main {
         
         g.piirra();
         
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
@@ -90,7 +114,7 @@ public class Main {
             }
 
 
-//            g.setMaailma(new Maailma(p.luoMaasto(50, 500 + i, 500)));
+            //g.liikutaKatsojaa(0, -0.2, 0.2);
             g.piirra();
         }
         
