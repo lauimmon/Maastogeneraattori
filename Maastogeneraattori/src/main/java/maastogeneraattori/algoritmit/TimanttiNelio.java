@@ -9,8 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
-import maastogeneraattori.grafiikka.RGB;
-import maastogeneraattori.laskenta.Vektori;
 
 /**
  * Luokalla generoidaan maasto timantti-neliö-algoritmilla.

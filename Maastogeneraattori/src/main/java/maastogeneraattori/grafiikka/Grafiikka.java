@@ -9,9 +9,8 @@ package maastogeneraattori.grafiikka;
 
 import maastogeneraattori.maailma.Maailma;
 import java.awt.Graphics;
-import java.util.Collections;
-import java.util.PriorityQueue;
 import javax.swing.JPanel;
+import maastogeneraattori.algoritmit.OmaGeneraattori;
 import maastogeneraattori.laskenta.Kolmio;
 import maastogeneraattori.laskenta.Kvaternio;
 import maastogeneraattori.laskenta.Vektori;
@@ -24,26 +23,22 @@ import maastogeneraattori.laskenta.Vektori;
  * @author lauimmon
  */
 public class Grafiikka extends JPanel{
-    Maailma maailma;
-    XY[][] piirrettava;
-    Vektori katsojanPaikka = new Vektori(0.5, 2.0, -1.0);
-    Kvaternio katsojanSuunta = Kvaternio.uusiKaanto(-0.82, 1.0, 0.0, 0.0);
+    private OmaGeneraattori generaattori;
+    private Maailma maailma;
+    private XY[][] piirrettava;
+    private Vektori katsojanPaikka = new Vektori(0.5, 1.5, -1.0);
+    private Kvaternio katsojanSuunta = Kvaternio.uusiKaanto(-0.82, 1.0, 0.0, 0.0);
     
     /**
      * Luodaan ruudulla esitettävä esitys maaston tietojen pohjalta.
      * 
-     * @param maailma , jossa tallennettu tiedot maastosta ja valo-olosuhteista
+     * @param o on generaattori, jolla maasto luodaan
      */
     
-    public Grafiikka(Maailma maailma) {
-        this.maailma = maailma;
+    public Grafiikka(OmaGeneraattori o) {
+        this.generaattori = o;
+        this.maailma = new Maailma(o.luoMaasto());
        
-        luoPiirrettavaKartta();
-    }
-    
-    public void setMaailma(Maailma maailma) {
-        this.maailma = maailma;
-        
         luoPiirrettavaKartta();
     }
     
@@ -103,6 +98,9 @@ public class Grafiikka extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        maailma = new Maailma(generaattori.luoMaasto());
+        luoPiirrettavaKartta();
+        
         Kolmio[] kolmiot = maailma.getKolmiomaasto();
         
         for (int i = 0; i < kolmiot.length; i++) {
@@ -119,35 +117,5 @@ public class Grafiikka extends JPanel{
                 g.fillPolygon(x, y, 3);
             }
         }
-    }
-    
-    /**
-     * Liikuttaa katsojaa haluttuun suuntaan koordinaatistossa.
-     * Tällöin myös ruudulle piirrettävä näkymä pitää laskea uudestaan.
-     *
-     * @param x matka x-suunnassa
-     * @param y matka y-suunnassa
-     * @param z matka z-suunnassa
-     */
-    
-    public void liikutaKatsojaa(double x, double y, double z) {
-        katsojanPaikka = katsojanPaikka.lisaa(new Vektori(x, y, z));
-        
-        luoPiirrettavaKartta();
-    }
-    
-    /**
-     * Kääntää katsojaa sivusuunnassa ja vertikaalisessa suunnassa. Eli katsoja voi
-     * kääntyä oikealle ja vasemmalle, tai katsoa ylös tai alas.
-     * Tällöin myös ruudulle piirrettävä näkymä pitää laskea uudestaan.
-     * 
-     * @param horisontaalinen
-     * @param vertikaalinen 
-     */
-    
-    public void kaanna(double horisontaalinen, double vertikaalinen) {
-        // Täydennä myöhemmin metodi, jolla katsojan näkökenttää käännetään
-    
-        luoPiirrettavaKartta();
     }
 }

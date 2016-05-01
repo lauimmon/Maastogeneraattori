@@ -5,8 +5,6 @@
  */
 package maastogeneraattori.laskenta;
 
-import java.util.Comparator;
-
 /**
  * Vektoriluokan avulla voi tehdä laskutoimituksia vektoreilla.
  * 

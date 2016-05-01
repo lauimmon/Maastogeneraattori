@@ -7,8 +7,6 @@ package maastogeneraattori.maailma;
 
 import java.awt.Color;
 import maastogeneraattori.grafiikka.RGB;
-import maastogeneraattori.grafiikka.RGB;
-import maastogeneraattori.grafiikka.XY;
 import maastogeneraattori.laskenta.Kolmio;
 import maastogeneraattori.laskenta.Vektori;
 
@@ -113,6 +111,7 @@ public class Maailma {
                 int y = k.getYKoordinaatti(j);
                 Vektori piste = kartta[x][y];
                 RGB vari = varit[x][y];
+                //RGB vari = new RGB(0.8, 0.7, 0.5);
                 Vektori normaali = normaalit[x][y].normalisoi();
                 Vektori valo = piste.vahenna(aurinko);
                 double etaisyys = valo.pituus();

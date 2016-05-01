@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import maastogeneraattori.algoritmit.OmaGeneraattori;
 import maastogeneraattori.algoritmit.TimanttiNelio;
 import maastogeneraattori.grafiikka.Grafiikka;
 import maastogeneraattori.maailma.Maailma;
@@ -62,61 +63,10 @@ public class Main {
 //        }
         
         //---------------------------------------------//
+       
         
-        int perlinKoko = 100;
-        int maastoKoko = 200;
-        
-        Perlin p1 = new Perlin(perlinKoko);
-        Perlin p2 = new Perlin(perlinKoko);
-        Perlin p3 = new Perlin(perlinKoko);
-        Perlin p4 = new Perlin(perlinKoko);
-        Perlin p5 = new Perlin(perlinKoko);
-        
-        double[][] maasto1 = p1.luoMaasto(maastoKoko, 0, 0, 63, 63);
-        double[][] maasto2 = p2.luoMaasto(maastoKoko, 0, 0, 31, 31);
-        double[][] maasto3 = p3.luoMaasto(maastoKoko, 0, 0, 15, 15);
-        double[][] maasto4 = p4.luoMaasto(maastoKoko, 0, 0, 7, 7);
-        double[][] maasto5 = p5.luoMaasto(maastoKoko, 0, 0, 3, 3);
-
-        double[][] maasto = maasto5;
-        
-
-        
-        for (int i = 0; i < maastoKoko / 2; i++) {
-            for (int j = 0; j < maastoKoko / 2; j++) {
-                maasto[i][j] = maasto[i][j] + maasto4[i][j];
-            }
-        }
-        
-        Maailma maailma = new Maailma(maasto);
-
-        
-    
-        JFrame frame = new JFrame("Maasto");
-        
-        frame.setPreferredSize(new Dimension(1000, 1000));
-        
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-        Grafiikka g = new Grafiikka(maailma);
-        frame.getContentPane().add(g);
-        
-        frame.pack();
-        frame.setVisible(true);
-        
-        g.piirra();
-        
-        for (int i = 0; i < 10; i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-            //g.liikutaKatsojaa(0, -0.2, 0.2);
-            g.piirra();
-        }
+        Kayttoliittyma kali = new Kayttoliittyma();
+        kali.run();
         
         
         
