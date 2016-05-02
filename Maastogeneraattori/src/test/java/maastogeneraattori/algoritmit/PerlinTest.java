@@ -58,4 +58,28 @@ public class PerlinTest {
         assertTrue(asetettu);
     }
     
+    @Test
+    public void tekeeOikeanKokoisenMaaston() {
+        int koko = 189;
+        double[][] maasto = p.luoMaasto(koko, 2, 3, 5, 6);
+        assertEquals(maasto.length, koko);
+    }
+    
+    @Test
+    public void tekeeSamanMaastonSamaanKohtaanUudestaan() {
+        int koko = 20;
+        double[][] maasto1 = p.luoMaasto(koko, 2, 3, 5, 6);
+        double[][] maasto2 = p.luoMaasto(koko, 2, 3, 5, 6);
+        
+        boolean samat = true;
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
+                if (maasto1[i][j] != maasto2[i][j]) {
+                    samat = false;
+                }
+            }
+        }
+        
+        assertEquals(samat, true);
+    }
 }

@@ -27,7 +27,7 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     private int maastoKoko;
     
     public Kayttoliittyma() {
-        perlinKoko = 100;
+        perlinKoko = 10;
         resoluutio = 50;
         maastoKoko = 2;
         generaattori = new OmaGeneraattori(perlinKoko, resoluutio, maastoKoko);

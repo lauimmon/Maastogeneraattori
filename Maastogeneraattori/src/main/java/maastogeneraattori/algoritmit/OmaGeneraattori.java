@@ -21,10 +21,10 @@ public class OmaGeneraattori {
     private Perlin p5;
     private Perlin p6;
     private double[][] maasto;
-    private double x;
-    private double y;
+    private double maastonKeskikohtaX;
+    private double maastonKeskikohtaY;
     private int resoluutio;
-    private int nakyvaMaasto;
+    private int nakyvatBlokit;
     
     /**
      * Tässä luotavassa maastossa luodaan ensin nxn kokoisia Perlinkohinataulukoita,
@@ -33,10 +33,10 @@ public class OmaGeneraattori {
      * 
      * @param perlinKoko Perlinkohinataulukon koko, eli maaston blokkien määrä per sivu
      * @param resoluutio eli miten monta pistettä yhden blokin sisällä määritellään
-     * @param nakyvaMaasto eli miten monen blokin kokoinen alue kerralla tehdään
+     * @param nakyvatBlokit eli miten monen blokin kokoinen alue kerralla tehdään
      */
 
-    public OmaGeneraattori(int perlinKoko, int resoluutio, int nakyvaMaasto) {
+    public OmaGeneraattori(int perlinKoko, int resoluutio, int nakyvatBlokit) {
         p1 = new Perlin(perlinKoko);
         p2 = new Perlin(perlinKoko * 2);
         p3 = new Perlin(perlinKoko * 4);
@@ -44,37 +44,27 @@ public class OmaGeneraattori {
         p5 = new Perlin(perlinKoko * 16);
         p6 = new Perlin(perlinKoko * 32);
         
-        maasto = new double[nakyvaMaasto * resoluutio][nakyvaMaasto * resoluutio];
-        x = perlinKoko / 2;
-        y = perlinKoko / 2;
+        maasto = new double[nakyvatBlokit * resoluutio][nakyvatBlokit * resoluutio];
+        maastonKeskikohtaX = perlinKoko / 2;
+        maastonKeskikohtaY = perlinKoko / 2;
         this.resoluutio = resoluutio;
-        this.nakyvaMaasto = nakyvaMaasto;
+        this.nakyvatBlokit = nakyvatBlokit;
     }
     
     public double[][] luoMaasto() {
         maasto = new double[maasto.length][maasto[0].length];
         int koko = maasto.length;
         
-        double alkuX = x - (double) nakyvaMaasto / 2;
-        if (alkuX < 0) {
-            alkuX = 0;
-        } else if (alkuX > (double) p1.getRandomVektorit().length - 1 - nakyvaMaasto / 2) {
-            alkuX = (double) p1.getRandomVektorit().length - 1 - nakyvaMaasto / 2;
-        }
+        double alkuX = maastonKeskikohtaX - (double) nakyvatBlokit / 2;
         
-        double alkuY = y - (double) nakyvaMaasto / 2;
-        if (alkuY < 0) {
-            alkuY = 0;
-        } else if (alkuY > (double) p1.getRandomVektorit()[0].length - 1 - nakyvaMaasto / 2) {
-            alkuY = (double) p1.getRandomVektorit()[0].length - 1 - nakyvaMaasto / 2;
-        }
+        double alkuY = maastonKeskikohtaY - (double) nakyvatBlokit / 2;
         
-        double[][] maasto1 = p1.luoMaasto(koko, alkuX, alkuY, alkuX + (double) nakyvaMaasto, alkuY + (double) nakyvaMaasto);
-        double[][] maasto2 = p2.luoMaasto(koko, alkuX * 2, alkuY * 2, (alkuX + (double) nakyvaMaasto) * 2, (alkuY + (double) nakyvaMaasto) * 2);
-        double[][] maasto3 = p3.luoMaasto(koko, alkuX * 4, alkuY * 4, (alkuX + (double) nakyvaMaasto) * 4, (alkuY + (double) nakyvaMaasto) * 4);
-        double[][] maasto4 = p4.luoMaasto(koko, alkuX * 8, alkuY * 8, (alkuX + (double) nakyvaMaasto) * 8, (alkuY + (double) nakyvaMaasto) * 8);
-        double[][] maasto5 = p5.luoMaasto(koko, alkuX * 16, alkuY * 16, (alkuX + (double) nakyvaMaasto) * 16, (alkuY + (double) nakyvaMaasto) * 16);
-        double[][] maasto6 = p6.luoMaasto(koko, alkuX * 32, alkuY * 32, (alkuX + (double) nakyvaMaasto) * 32, (alkuY + (double) nakyvaMaasto) * 32);
+        double[][] maasto1 = p1.luoMaasto(koko, alkuX, alkuY, alkuX + (double) nakyvatBlokit, alkuY + (double) nakyvatBlokit);
+        double[][] maasto2 = p2.luoMaasto(koko, alkuX * 2, alkuY * 2, (alkuX + (double) nakyvatBlokit) * 2, (alkuY + (double) nakyvatBlokit) * 2);
+        double[][] maasto3 = p3.luoMaasto(koko, alkuX * 4, alkuY * 4, (alkuX + (double) nakyvatBlokit) * 4, (alkuY + (double) nakyvatBlokit) * 4);
+        double[][] maasto4 = p4.luoMaasto(koko, alkuX * 8, alkuY * 8, (alkuX + (double) nakyvatBlokit) * 8, (alkuY + (double) nakyvatBlokit) * 8);
+        double[][] maasto5 = p5.luoMaasto(koko, alkuX * 16, alkuY * 16, (alkuX + (double) nakyvatBlokit) * 16, (alkuY + (double) nakyvatBlokit) * 16);
+        double[][] maasto6 = p6.luoMaasto(koko, alkuX * 32, alkuY * 32, (alkuX + (double) nakyvatBlokit) * 32, (alkuY + (double) nakyvatBlokit) * 32);
         
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
@@ -86,29 +76,29 @@ public class OmaGeneraattori {
     }
         
     public void liikuta(double dx, double dy) {
-        x += dx * (double) nakyvaMaasto;
-        if (x < 0) {
-            x = 0;
-        } else if (x > p1.getRandomVektorit().length - 1) {
-            x = p1.getRandomVektorit().length - 1;
+        maastonKeskikohtaX += dx * (double) nakyvatBlokit;
+        if (maastonKeskikohtaX < nakyvatBlokit / 2) {
+            maastonKeskikohtaX = nakyvatBlokit / 2;
+        } else if (maastonKeskikohtaX > p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2) {
+            maastonKeskikohtaX = p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2;
         }
-        y += dy * (double) nakyvaMaasto;
-        if (y < 0) {
-            y = 0;
-        } else if (y > p1.getRandomVektorit()[0].length - 1) {
-            y = p1.getRandomVektorit().length - 1;
+        maastonKeskikohtaY += dy * (double) nakyvatBlokit;
+        if (maastonKeskikohtaY < nakyvatBlokit / 2) {
+            maastonKeskikohtaY = nakyvatBlokit / 2;
+        } else if (maastonKeskikohtaY > p1.getRandomVektorit()[0].length - 1 - nakyvatBlokit / 2) {
+            maastonKeskikohtaY = p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2;
         }
     }
 
     public int getNakyvaMaasto() {
-        return nakyvaMaasto;
+        return nakyvatBlokit;
     }
 
-    public double getX() {
-        return x;
+    public double getmaastonKeskikohtaX() {
+        return maastonKeskikohtaX;
     }
 
-    public double getY() {
-        return y;
+    public double getmaastonKeskikohtaY() {
+        return maastonKeskikohtaY;
     }
 }
