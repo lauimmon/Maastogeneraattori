@@ -11,8 +11,9 @@ import maastogeneraattori.laskenta.Vektori;
 /**
  * Luokka Perlin-kohinan luontiin.
  * 
- * Tätä ei ole vielä käytetty maaston luontiin.
- * Tätä varten kehitetään algoritmi myöhemmin.
+ * Perlinkohinaa luodaan tekemällä ruudukko, jonka jokaisessa risteyspisteessä on
+ * satunnaisesti luotu vektori. Näiden vektorien avulla mille tahansa ruudukon sisäiselle
+ * pisteelle voidaan laskea arvo. Arvo on yhdelle pisteelle aina sama.
  *
  * @author lauimmon
  */
@@ -22,10 +23,9 @@ public class Perlin {
     private Random rand = new Random();
 
     /**
-     * Tehdään perusta vektoriruudukolle. Jokainen ruudukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
+     * Tehdään perusta vektoritaulukolle. Jokainen taulukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
      * 
-     * @param n ruudukon koko
-     * @param vaihtelu nurkka-arvojen vaihteluväli
+     * @param n taulukon koko
      */
     
     public Perlin(int n) {
@@ -46,8 +46,11 @@ public class Perlin {
 
     
     /**
-     * Luo nxn korkeuskartan. Funktio käyttää tähän satunnaisvektoreita koordinaateista
-     * (x1, y1), (x1, y2), (x2, y1), (x2, y2)
+     * Luo nxn kokoisen maaston korkeuskartan käyttämällä siihen Perlinkohinataulukon 
+     * pisteiden (x1, y1), (x1, y2), (x2, y1) ja (x2, y2) sisältä löytyvien pisteiden
+     * vektoreita. Tietyn pisteen p arvo lasketaan ottamalla pistetulot pistettä 
+     * ympäröivien vektorien ja niiden sijaintien ja p:n sijainnin välisten vektorien
+     * väliltä ja interpoloimalla näiden neljän arvon kesken.
      * 
      * @param n kartan koko
      * @param x1 kartan pienin x-koordinaatti
@@ -103,6 +106,11 @@ public class Perlin {
         return i * i * i * (10 + i * (-15 + i * 6));
     }
 
+    /**
+     * 
+     * @return taulukko satunnaisVektoreista
+     */
+    
     public Vektori[][] getRandomVektorit() {
         return satunnaisvektorit;
     }

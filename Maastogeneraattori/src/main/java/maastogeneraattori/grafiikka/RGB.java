@@ -31,7 +31,7 @@ public class RGB {
      * Laskee kahden värin välisen summan.
      * 
      * @param rgb
-     * @return 
+     * @return värien summa
      */
     
     public RGB summa(RGB rgb) {
@@ -42,7 +42,7 @@ public class RGB {
      * Laskee kahden värin välisen erotuksen.
      * 
      * @param rgb
-     * @return 
+     * @return värien erotus
      */
     
     public RGB erotus(RGB rgb) {
@@ -71,7 +71,7 @@ public class RGB {
     /**
      * Muuttaa värin Integer-arvoksi.
      * 
-     * @return 
+     * @return värin Integer-arvo
      */
     
     public int toRGB() {

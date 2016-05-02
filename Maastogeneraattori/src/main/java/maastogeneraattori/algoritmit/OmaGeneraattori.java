@@ -8,7 +8,8 @@ package maastogeneraattori.algoritmit;
 import java.util.logging.Logger;
 
 /**
- * Tämä generaattori luo maaston yhdistämällä useita Perlinkohinoita päällekkäin.
+ * Oma generaattori luo maaston yhdistämällä useita Perlinkohinoita päällekkäin. 
+ * Generaattorin tarkoitus on luoda mahdollisimman luonnollista maastoa.
  * 
  * @author lauimmon
  */
@@ -27,12 +28,13 @@ public class OmaGeneraattori {
     private int nakyvatBlokit;
     
     /**
-     * Tässä luotavassa maastossa luodaan ensin nxn kokoisia Perlinkohinataulukoita,
-     * joita yhdistämällä saadaan lopullinen maasto. Maastosta tehdään kerrallaan
-     * vain pieni pala koko Perlintaukon koosta.
+     * Tässä luotavassa maastossa luodaan ensin nxn kokoinen Perlinkohinataulukko,
+     * jonka koko määrää koko maailman blokkien määrän. Useita muita Perlinkohinatauloita
+     * luodaan tämän lisäksi, ja näitä yhdistämällä saadaan lopullinen maasto.
      * 
-     * @param perlinKoko Perlinkohinataulukon koko, eli maaston blokkien määrä per sivu
-     * @param resoluutio eli miten monta pistettä yhden blokin sisällä määritellään
+     * 
+     * @param perlinKoko ensimmäisen Perlinkohinataulukon koko, eli maaston blokkien määrä per sivu
+     * @param resoluutio pisteiden määrä yhden blokin sisällä per sivu
      * @param nakyvatBlokit eli miten monen blokin kokoinen alue kerralla tehdään
      */
 
@@ -50,6 +52,13 @@ public class OmaGeneraattori {
         this.resoluutio = resoluutio;
         this.nakyvatBlokit = nakyvatBlokit;
     }
+    
+    /**
+     * Luodaan maasto, jonka koko määräytyy konstruktorissa annettujen parametrien mukaan.
+     * 
+     * 
+     * @return luotu maasto
+     */
     
     public double[][] luoMaasto() {
         maasto = new double[maasto.length][maasto[0].length];
@@ -75,6 +84,13 @@ public class OmaGeneraattori {
         return maasto;
     }
         
+    /**
+     * Liikutetaan maaston keskikohtaa parametreina annettu määrä.
+     * 
+     * @param dx miten monta blokkia tai miten suuri osuus blokista liikutaan x-suunnassa
+     * @param dy miten monta blokkia tai miten suuri osuus blokista liikutaan y-suunnassa
+     */
+    
     public void liikuta(double dx, double dy) {
         maastonKeskikohtaX += dx * (double) nakyvatBlokit;
         if (maastonKeskikohtaX < (double) nakyvatBlokit / 2) {
@@ -90,15 +106,30 @@ public class OmaGeneraattori {
         }
     }
 
+    /**
+     * 
+     * @return luotavan maaston koko blokeissa
+     */
+    
     public int getNakyvaMaasto() {
         return nakyvatBlokit;
     }
+    
+    /**
+     * 
+     * @return luotavan maaston keskikohdan x-koordinaatti Perlintaulukossa.
+     */
 
-    public double getmaastonKeskikohtaX() {
+    public double getMaastonKeskikohtaX() {
         return maastonKeskikohtaX;
     }
 
-    public double getmaastonKeskikohtaY() {
+    /**
+     * 
+     * @return luotavan maaston keskikohdan y-koordinaatti Perlintaulukossa.
+     */
+    
+    public double getMaastonKeskikohtaY() {
         return maastonKeskikohtaY;
     }
 }

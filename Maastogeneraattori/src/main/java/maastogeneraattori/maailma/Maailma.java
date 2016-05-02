@@ -11,9 +11,11 @@ import maastogeneraattori.laskenta.Kolmio;
 import maastogeneraattori.laskenta.Vektori;
 
 /**
- * Luokan avulla tallennetaan maasto sekä korkeusarvojen matriisina, kolmioituna pintana, että pinnan pisteiden vektorikokoelmana.
+ * Luokan avulla tallennetaan maasto sekä korkeusarvojen taulukkona, kolmioituna pintana, 
+ * että pinnan pisteiden vektoriesityksenä.
  * 
- * Myös valo-olosuhteet pitää tallentaa piirtämistä varten.
+ * Pisteille lasketaan väri korkeuden perusteella, ja värejä muokataan valon ja varjojen
+ * vaikutusten mukaan.
  *
  * @author lauimmon
  */
@@ -27,9 +29,10 @@ public class Maailma {
     private double[][] varjot;
     
     /**
-     * Luodaan korkeusmatriisin 'ruudukko' avulla maastolle vektoriesitys 'kartta', kolmioitu pinta 'kolmiomaasto' sekä värit.
+     * Luodaan korkeusarvojen taulukon 'ruudukko' avulla maastolle vektoriesitys 'kartta', 
+     * kolmioitu pinta 'kolmiomaasto' sekä värit.
      * 
-     * @param maasto jollain algoritmilla luotu maasto, jossa maaston korkeusarvot esitetty ruudukossa
+     * @param maasto jollain algoritmilla luotu maasto, jossa maaston korkeusarvot esitetty taulukossa
      */
 
     public Maailma(double[][] maasto) {
@@ -169,50 +172,102 @@ public class Maailma {
         return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
     }
 
+    /**
+     * Asetetaan valonlähteen paikka.
+     * 
+     * @param aurinko auringon paikka vektorina
+     */
+    
     public void setAurinko(Vektori aurinko) {
         this.aurinko = aurinko;
     }
     
+    /**
+     * @param i x-koordinaatti
+     * @param j z-koordinaatti
+     * @return korkeus, eli y-koordinaatti
+     */
+    
     public double getKorkeus(int i, int j){
         return kartta[i][j].getY();
     }
+    
+    /**
+     * @return maasto korkeusarvotaulukkona
+     */
 
-    public Vektori[][] getMaasto() {
-        return kartta;
+    public double[][] getMaasto() {
+        return maasto;
     }
+    
+    /**
+     * @return maasto kolmioituna pintana
+     */
 
     public Kolmio[] getKolmiomaasto() {
         return kolmiomaasto;
     }
     
+    /**
+     * @return maaston pisteiden määrä x-suunnassa
+     */
+    
     public int getPituus() {
         return getMaasto().length;
     }
+    
+    /**
+     * @return maaston pisteiden määrä z-suunnassa
+     */
     
     public int getLeveys() {
         return getMaasto()[0].length;
     }
 
+    /**
+     * @return maaston minimikorkeusarvo
+     */
+    
     public double getMin() {
         return min;
     }
+
+    /**
+     * @return maaston maksimikorkeusarvo
+     */
 
     public double getMax() {
         return max;
     }
 
+    /**
+     * @return maasto vektoriesityksenä
+     */
+
     public Vektori[][] getKartta() {
         return kartta;
     }
+    
+    /**
+     * @return värit taulukkona
+     */
 
     public RGB[][] getVarit() {
         return varit;
     }
 
+    /**
+     * @return auringon paikka
+     */
+    
     public Vektori getAurinko() {
         return aurinko;
     }
 
+    /**
+     * @return varjot taulukkona
+     */
+    
     public double[][] getVarjot() {
         return varjot;
     }

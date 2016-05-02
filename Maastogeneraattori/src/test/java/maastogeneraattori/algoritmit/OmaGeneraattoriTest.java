@@ -56,10 +56,10 @@ public class OmaGeneraattoriTest {
     @Test
     public void alussaMaastonKeskikohtaKokoMaailmanKeskella() {
         boolean oikein = true;
-        if (g.getmaastonKeskikohtaX() != perlinKoko / 2) {
+        if (g.getMaastonKeskikohtaX() != perlinKoko / 2) {
             oikein = false;
         }
-        if (g.getmaastonKeskikohtaY() != perlinKoko / 2) {
+        if (g.getMaastonKeskikohtaY() != perlinKoko / 2) {
             oikein = false;
         }
         assertTrue(oikein);
@@ -70,10 +70,10 @@ public class OmaGeneraattoriTest {
         g.liikuta(1.0, -0.5);
         
         boolean oikein = true;
-        if (g.getmaastonKeskikohtaX() != perlinKoko / 2 + 1.0 * nakyvatBlokit) {
+        if (g.getMaastonKeskikohtaX() != perlinKoko / 2 + 1.0 * nakyvatBlokit) {
             oikein = false;
         }
-        if (g.getmaastonKeskikohtaY() != perlinKoko / 2 - 0.5 * nakyvatBlokit) {
+        if (g.getMaastonKeskikohtaY() != perlinKoko / 2 - 0.5 * nakyvatBlokit) {
             oikein = false;
         }
         assertTrue(oikein);
@@ -84,10 +84,10 @@ public class OmaGeneraattoriTest {
         g.liikuta(10.0, -0.5);
         
         boolean oikein = true;
-        if (g.getmaastonKeskikohtaX() == perlinKoko / 2 + 10.0 * nakyvatBlokit) {
+        if (g.getMaastonKeskikohtaX() == perlinKoko / 2 + 10.0 * nakyvatBlokit) {
             oikein = false;
         }
-        if (g.getmaastonKeskikohtaY() != perlinKoko / 2 - 0.5 * nakyvatBlokit) {
+        if (g.getMaastonKeskikohtaY() != perlinKoko / 2 - 0.5 * nakyvatBlokit) {
             oikein = false;
         }
         assertTrue(oikein);

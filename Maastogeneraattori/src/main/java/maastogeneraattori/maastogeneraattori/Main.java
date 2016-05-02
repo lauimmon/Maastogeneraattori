@@ -5,18 +5,6 @@
  */
 package maastogeneraattori.maastogeneraattori;
 
-import java.awt.Dimension;
-import java.util.Random;
-import maastogeneraattori.algoritmit.Perlin;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-import maastogeneraattori.algoritmit.OmaGeneraattori;
-import maastogeneraattori.algoritmit.TimanttiNelio;
-import maastogeneraattori.grafiikka.Grafiikka;
-import maastogeneraattori.maailma.Maailma;
-
 
 
 /**
@@ -54,7 +42,7 @@ public class Main {
 
        
         
-        Kayttoliittyma kali = new Kayttoliittyma(5, 50, 5);
+        Kayttoliittyma kali = new Kayttoliittyma(5, 50, 1);
         kali.run();
         
         

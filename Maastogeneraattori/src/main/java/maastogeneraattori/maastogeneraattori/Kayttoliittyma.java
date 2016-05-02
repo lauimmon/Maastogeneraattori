@@ -14,7 +14,8 @@ import maastogeneraattori.algoritmit.OmaGeneraattori;
 import maastogeneraattori.grafiikka.Grafiikka;
 
 /**
- *
+ * 
+ * 
  * @author lauimmon
  */
 public class Kayttoliittyma implements Runnable, KeyListener {
@@ -35,7 +36,7 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     
     @Override
     public void run() {
-        JFrame frame = new JFrame("Maasto");
+        frame = new JFrame("Maasto");
         
         frame.setPreferredSize(new Dimension(1000, 1000));
         

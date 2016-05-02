@@ -87,7 +87,7 @@ public class Vektori {
     /**
      * Laskee vektorin pituuden.
      * 
-     * @return 
+     * @return vektorin pituus
      */
     
     public double pituus(){
@@ -108,20 +108,32 @@ public class Vektori {
      * Luo tämän vektorin suuntaisen vektorin, jonka pituus on kerrottu parametrina annetulla luvulla
      * 
      * @param skaala pituuden kerroin
-     * @return 
+     * @return skaalattu vektori
      */
     
     public Vektori skaalaa(double skaala) {
         return new Vektori(x * skaala, y * skaala, z * skaala);
     }
+    
+    /**
+     * @return vektorin x-komponetti
+     */
 
     public double getX() {
         return x;
     }
 
+    /**
+     * @return vektorin y-komponetti
+     */
+
     public double getY() {
         return y;
     }
+
+    /**
+     * @return vektorin z-komponetti
+     */
 
     public double getZ() {
         return z;

@@ -13,6 +13,13 @@ import java.util.Random;
 /**
  * Luokalla generoidaan maasto timantti-neliö-algoritmilla.
  * 
+ * Timantti-neliö-algoritmi toimii niin, että annetaan neliön kulmille arvot, otetaan
+ * piste neliön keskeltä ja annetaan sille arvo, joka on näiden nurkkien keskiarvo
+ * lisättynä pieneen satunnaisarvoon. Sitten lasketut pisteet timanttien nurkkina
+ * otetaan timenttien keskeltä pisteitä ja lasketaan samalla tavalla niille arvo
+ * niiden nurkkien keskiarvosta ja satunnaisarvosta. Näin jatketaan vuorotellen
+ * neliö- ja timanttiaskeleita, kunnes on saatu haluttu määrä pisteitä.
+ * 
  * @author lauimmon
  */
 public class TimanttiNelio {
@@ -132,48 +139,20 @@ public class TimanttiNelio {
         yht /= i;
         asetaArvo(x, y, yht + offset);
     }
+
+    /**
+     * 
+     * @return luotu maasto 
+     */
     
-    /**
-     * Tulostaa generoidun maaston 2D-taulukkona.
-     */
-    public void tulosta() {
-        for (int i = 0; i < maasto.length; i++) {
-            for (int j = 0; j < maasto.length; j++) {
-                System.out.print(maasto[i][j] + " ");
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
-
-    /**
-     * Tallentaa generoidun maaston 2D-taulukkona tekstitiedostoon "korkeuskartta.txt".
-     */
-    public void tallenna() {
-        String tiedosto = "korkeuskartta.txt";
-        
-        try {
-            FileWriter fw = new FileWriter(tiedosto);
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            
-            for (int i = 0; i < maasto.length; i++) {
-                for (int j = 0; j < maasto.length; j++) {
-                    bw.write(String.valueOf(maasto[i][j]) + " ");
-                }
-                bw.newLine();
-            }
-            
-            bw.close();
-            
-        } catch (IOException ex) {
-            System.out.println("Tiedoston kirjoitus epäonnistui");
-        }
-    }
-
     public double[][] getMaasto() {
         return maasto;
     }
+    
+    /**
+     * 
+     * @return luotavan maaston koko 
+     */
     
     public int getKoko() {
         return maasto.length;

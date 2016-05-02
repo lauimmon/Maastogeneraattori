@@ -16,9 +16,10 @@ import maastogeneraattori.laskenta.Kvaternio;
 import maastogeneraattori.laskenta.Vektori;
 
 /**
- * Luokan avulla voidaan esittää maasto ruudulla.
+ * Luokan avulla voidaan esittää maasto graafisesti.
  * 
- * Luokkaan säilötään tieto katsojan paikasta ja katseen suunnasta, sekä itse maastosta ja sen esityksestä ruudulla.
+ * Luokkaan säilötään tieto katsojan paikasta ja katseen suunnasta, 
+ * sekä itse maastosta ja sen esityksestä ruudulla.
  * 
  * @author lauimmon
  */
@@ -30,7 +31,9 @@ public class Grafiikka extends JPanel{
     private Kvaternio katsojanSuunta = Kvaternio.uusiKaanto(-0.82, 1.0, 0.0, 0.0);
     
     /**
-     * Luodaan ruudulla esitettävä esitys maaston tietojen pohjalta.
+     * Luodaan ruudulla esitettävä esitys maaston tietojen pohjalta. Maaston vektoriesityksetä
+     * luodaan ensin vektoriesitys katsojan näkymästä ja sitten siitä ruudulle
+     * piirrettävästä näkymästä pikseliesitys.
      * 
      * @param o on generaattori, jolla maasto luodaan
      */
@@ -70,7 +73,7 @@ public class Grafiikka extends JPanel{
         
         for (int i = 0; i < maailma.getPituus(); i++) {
             for (int j = 0; j < maailma.getLeveys(); j++) {
-                Vektori p = maailma.getMaasto()[i][j];
+                Vektori p = maailma.getKartta()[i][j];
                 Vektori t = p.vahenna(katsojanPaikka);
                 Vektori r = katsojanSuunta.kaanna(t);
                 katsojanNakyma[i][j] = r;
@@ -89,7 +92,7 @@ public class Grafiikka extends JPanel{
     }
     
     /**
-     * Piirtää maaston kolmioidun pinnan ruudulle katsojan näkökulmasta katsottuna.
+     * Piirtää maaston kolmioidun pinnan ruudulle pikseliesityksen perusteella.
      * 
      * @param g 
      */
@@ -109,7 +112,7 @@ public class Grafiikka extends JPanel{
             XY xy0 = piirrettava[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)];
             XY xy1 = piirrettava[k.getXKoordinaatti(1)][k.getYKoordinaatti(1)];
             XY xy2 = piirrettava[k.getXKoordinaatti(2)][k.getYKoordinaatti(2)];
-            double pistetulo = - maailma.getMaasto()[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)].vahenna(katsojanPaikka).normalisoi().pistetulo(k.getNormaali());
+            double pistetulo = - maailma.getKartta()[k.getXKoordinaatti(0)][k.getYKoordinaatti(0)].vahenna(katsojanPaikka).normalisoi().pistetulo(k.getNormaali());
             
             if (pistetulo > 0) {
                 int[] x = {xy0.x, xy1.x, xy2.x}, y = {xy0.y, xy1.y, xy2.y};
