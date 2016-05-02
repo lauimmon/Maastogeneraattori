@@ -29,6 +29,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
 //        TimanttiNelio m = new TimanttiNelio(100);
 //        
 //        m.luoMaasto(0, 1, 1.0);
@@ -50,24 +51,11 @@ public class Main {
 //        
 //        g.piirra();
 //        
-//        for (int i = 0; i < 18; i++) {
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//
-//            g.liikutaKatsojaa(0, -0.2, 0.2);
-//            g.piirra();
-//        }
-        
-        //---------------------------------------------//
+
        
         
-        Kayttoliittyma kali = new Kayttoliittyma();
+        Kayttoliittyma kali = new Kayttoliittyma(5, 50, 5);
         kali.run();
-        
         
         
         

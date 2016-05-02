@@ -45,8 +45,8 @@ public class OmaGeneraattori {
         p6 = new Perlin(perlinKoko * 32);
         
         maasto = new double[nakyvatBlokit * resoluutio][nakyvatBlokit * resoluutio];
-        maastonKeskikohtaX = perlinKoko / 2;
-        maastonKeskikohtaY = perlinKoko / 2;
+        maastonKeskikohtaX = (double) perlinKoko / 2;
+        maastonKeskikohtaY = (double) perlinKoko / 2;
         this.resoluutio = resoluutio;
         this.nakyvatBlokit = nakyvatBlokit;
     }
@@ -77,16 +77,16 @@ public class OmaGeneraattori {
         
     public void liikuta(double dx, double dy) {
         maastonKeskikohtaX += dx * (double) nakyvatBlokit;
-        if (maastonKeskikohtaX < nakyvatBlokit / 2) {
-            maastonKeskikohtaX = nakyvatBlokit / 2;
-        } else if (maastonKeskikohtaX > p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2) {
-            maastonKeskikohtaX = p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2;
+        if (maastonKeskikohtaX < (double) nakyvatBlokit / 2) {
+            maastonKeskikohtaX = (double) nakyvatBlokit / 2;
+        } else if (maastonKeskikohtaX > p1.getRandomVektorit().length - 1 - (double) nakyvatBlokit / 2) {
+            maastonKeskikohtaX = p1.getRandomVektorit().length - 1 - (double) nakyvatBlokit / 2;
         }
         maastonKeskikohtaY += dy * (double) nakyvatBlokit;
-        if (maastonKeskikohtaY < nakyvatBlokit / 2) {
-            maastonKeskikohtaY = nakyvatBlokit / 2;
-        } else if (maastonKeskikohtaY > p1.getRandomVektorit()[0].length - 1 - nakyvatBlokit / 2) {
-            maastonKeskikohtaY = p1.getRandomVektorit().length - 1 - nakyvatBlokit / 2;
+        if (maastonKeskikohtaY < (double) nakyvatBlokit / 2) {
+            maastonKeskikohtaY = (double) nakyvatBlokit / 2;
+        } else if (maastonKeskikohtaY > p1.getRandomVektorit()[0].length - 1 - (double) nakyvatBlokit / 2) {
+            maastonKeskikohtaY = p1.getRandomVektorit().length - 1 - (double) nakyvatBlokit / 2;
         }
     }
 

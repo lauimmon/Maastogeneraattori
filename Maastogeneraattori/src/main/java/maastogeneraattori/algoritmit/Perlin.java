@@ -29,10 +29,10 @@ public class Perlin {
      */
     
     public Perlin(int n) {
-        satunnaisvektorit = new Vektori[n][n];
+        satunnaisvektorit = new Vektori[n + 1][n + 1];
         
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= n; j++) {
                 satunnaisvektorit[i][j] = luoRandomYksikkovektori();
             }
         }

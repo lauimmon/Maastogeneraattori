@@ -15,7 +15,7 @@ import maastogeneraattori.grafiikka.Grafiikka;
 
 /**
  *
- * @author Perus
+ * @author lauimmon
  */
 public class Kayttoliittyma implements Runnable, KeyListener {
 
@@ -26,10 +26,10 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     private int resoluutio;
     private int maastoKoko;
     
-    public Kayttoliittyma() {
-        perlinKoko = 10;
-        resoluutio = 50;
-        maastoKoko = 2;
+    public Kayttoliittyma(int perlinKoko, int resoluutio, int maastoKoko) {
+        this.perlinKoko = perlinKoko;
+        this.resoluutio = resoluutio;
+        this.maastoKoko = maastoKoko;
         generaattori = new OmaGeneraattori(perlinKoko, resoluutio, maastoKoko);
     }
     

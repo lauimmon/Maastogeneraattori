@@ -64,7 +64,7 @@ public class Maailma {
                 double x = (double) i / (kartta.length - 1), z = (double) j / (kartta[0].length - 1);
                 double korkeus = suhteellinenKorkeus(x, z);
                 kartta[i][j] = new Vektori(x, korkeus * 0.7, z);
-                varit[i][j] = getVari(x, z);
+                varit[i][j] = getVari(i, j);
             }
         }
     }
@@ -160,8 +160,9 @@ public class Maailma {
     private RGB valkoinen = new RGB (1.0, 1.0, 1.0);
     
     
-    private RGB getVari(double i, double j) {
-      double a = suhteellinenKorkeus(i, j);
+    private RGB getVari(int i, int j) {
+      double a = maasto[i][j];
+      //muokkaa tämä toimivaksi
       if (a < .5)
         return sininen.summa(vihrea.erotus(sininen).skaalaa((a - 0.0) / 0.5));
       else
