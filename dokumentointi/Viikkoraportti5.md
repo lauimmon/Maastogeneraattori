@@ -26,6 +26,10 @@ Tunti vertaisarvion tekoa ja Perlinkohinakokeilua.
 
 **1.4.**
 
-Kaksi tuntia oman generaattorin ja grafiikan muokkausta. Käyttöliittymän luonti.
+2,5 tuntia oman generaattorin ja grafiikan muokkausta. Käyttöliittymän luonti.
 
-**Viikon työmäärä 11,5 tuntia**
+**2.4.**
+
+1,5 tuntia testien tekoa.
+
+**Viikon työmäärä 13,5 tuntia**
