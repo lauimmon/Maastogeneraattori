@@ -5,6 +5,7 @@
  */
 package maastogeneraattori.laskenta;
 
+import java.awt.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +18,8 @@ import static org.junit.Assert.*;
  * @author Perus
  */
 public class KolmioTest {
+    
+    Kolmio k;
     
     public KolmioTest() {
     }
@@ -31,9 +34,32 @@ public class KolmioTest {
     
     @Before
     public void setUp() {
+        k = new Kolmio(0, 0, 1, 0, 0, 1);
     }
     
     @After
     public void tearDown() {
+    }
+    
+    @Test
+    public void nurkatOikein() {
+        boolean oikein = false;
+        if (k.getXKoordinaatti(0) == 0 && k.getYKoordinaatti(0) == 0 && 
+                k.getXKoordinaatti(1) == 1 && k.getYKoordinaatti(1) == 0 && 
+                k.getXKoordinaatti(2) == 0 && k.getYKoordinaatti(2) == 1) {
+            oikein = true;
+        }
+        assertTrue(oikein);
+    }
+    
+    @Test
+    public void variNullKunVariaEiAsetettu() {
+        assertEquals(k.getVari(), null);
+    }
+    
+    @Test
+    public void variOikeinKunVariAsetettu() {
+        k.setVari(Color.gray);
+        assertEquals(k.getVari(), Color.gray);
     }
 }
