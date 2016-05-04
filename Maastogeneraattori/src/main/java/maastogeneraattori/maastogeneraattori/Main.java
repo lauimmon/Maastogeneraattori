@@ -42,7 +42,7 @@ public class Main {
 
        
         
-        Kayttoliittyma kali = new Kayttoliittyma(5, 50, 1);
+        Kayttoliittyma kali = new Kayttoliittyma(10, 50, 1);
         kali.run();
         
         

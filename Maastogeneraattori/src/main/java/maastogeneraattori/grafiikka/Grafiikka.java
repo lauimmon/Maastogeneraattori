@@ -40,9 +40,6 @@ public class Grafiikka extends JPanel{
     
     public Grafiikka(OmaGeneraattori o) {
         this.generaattori = o;
-        this.maailma = new Maailma(o.luoMaasto());
-       
-        luoPiirrettavaKartta();
     }
     
     private void luoPiirrettavaKartta() {
@@ -101,8 +98,15 @@ public class Grafiikka extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        long alku = System.currentTimeMillis();
         maailma = new Maailma(generaattori.luoMaasto());
+        long loppu = System.currentTimeMillis();
+        System.out.println("Piirrettäessä maailman luonti: " + (loppu - alku));
+        
+        alku = System.currentTimeMillis();
         luoPiirrettavaKartta();
+        loppu = System.currentTimeMillis();
+        System.out.println("Piirrettäessä piirrettävän kartan luominen: " + (loppu - alku));
         
         Kolmio[] kolmiot = maailma.getKolmiomaasto();
         
