@@ -2,4 +2,8 @@ Seitsemäs viikko
 
 **2.4.**
 
-Tunti bugien korjailua ja testien tekoa.
+3,5 tuntia bugien korjailua, testien tekoa ja javadocin täydennystä.
+
+**3.4.**
+
+Puoli tuntia testien tekoa.
