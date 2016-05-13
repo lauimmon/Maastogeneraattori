@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maastogeneraattori.maailma;
 
 import java.awt.Color;
@@ -182,11 +178,10 @@ public class Maailma {
     
     private RGB getVari(int i, int j) {
       double a = maasto[i][j];
-      //muokkaa tämä toimivaksi
-      if (a < .5)
-        return sininen.summa(vihrea.erotus(sininen).skaalaa((a - 0.0) / 0.5));
+      if (a < 0.0)
+        return sininen.summa(vihrea.erotus(sininen).skaalaa(a + 0.8 / 0.8));
       else
-        return vihrea.summa(valkoinen.erotus(vihrea).skaalaa((a - 0.5) / 0.5));
+        return vihrea.summa(valkoinen.erotus(vihrea).skaalaa(a / 0.8));
     }
 
     /**

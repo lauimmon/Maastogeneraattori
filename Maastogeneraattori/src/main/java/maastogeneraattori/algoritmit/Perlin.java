@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maastogeneraattori.algoritmit;
 
 import java.util.Random;
@@ -30,12 +26,6 @@ public class Perlin {
     
     public Perlin(int n) {
         satunnaisvektorit = new Vektori[n + 1][n + 1];
-        
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= n; j++) {
-                satunnaisvektorit[i][j] = luoRandomYksikkovektori();
-            }
-        }
     }
     
     private Vektori luoRandomYksikkovektori() {
@@ -88,9 +78,24 @@ public class Perlin {
         Vektori v3 = new Vektori(x - (double) x0, y - (double) (y0 + 1));
         Vektori v4 = new Vektori(x - (double) (x0 + 1), y - (double) (y0 + 1));
         
+        if (satunnaisvektorit[x0][y0] == null) {
+            satunnaisvektorit[x0][y0] = luoRandomYksikkovektori();
+        }
         double n00 = v1.pistetulo(satunnaisvektorit[x0][y0]);
+        
+        if (satunnaisvektorit[x0 + 1][y0] == null) {
+            satunnaisvektorit[x0 + 1][y0] = luoRandomYksikkovektori();
+        }
         double n10 = v2.pistetulo(satunnaisvektorit[x0 + 1][y0]);
+        
+        if (satunnaisvektorit[x0][y0 + 1] == null) {
+            satunnaisvektorit[x0][y0 + 1] = luoRandomYksikkovektori();
+        }
         double n01 = v3.pistetulo(satunnaisvektorit[x0][y0 + 1]);
+        
+        if (satunnaisvektorit[x0 + 1][y0 + 1] == null) {
+            satunnaisvektorit[x0 + 1][y0 + 1] = luoRandomYksikkovektori();
+        }
         double n11 = v4.pistetulo(satunnaisvektorit[x0 + 1][y0 + 1]);
         
         sx = haivyta(sx);

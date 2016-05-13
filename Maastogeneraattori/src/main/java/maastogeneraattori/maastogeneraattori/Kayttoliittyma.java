@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maastogeneraattori.maastogeneraattori;
 
 import java.awt.Dimension;
@@ -79,13 +75,13 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     public void keyPressed(KeyEvent e) {
         long alku = System.currentTimeMillis();
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            generaattori.liikuta(0, 0.01);
+            generaattori.liikuta(0, 1);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            generaattori.liikuta(0, -0.01);
+            generaattori.liikuta(0, -1);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            generaattori.liikuta(0.01, 0);
+            generaattori.liikuta(1, 0);
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            generaattori.liikuta(-0.01, 0);
+            generaattori.liikuta(-1, 0);
         }
         grafiikka.piirra();
         long loppu = System.currentTimeMillis();
