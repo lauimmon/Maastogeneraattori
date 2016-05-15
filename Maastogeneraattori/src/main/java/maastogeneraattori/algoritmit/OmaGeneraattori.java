@@ -47,7 +47,7 @@ public class OmaGeneraattori {
     }
     
     /**
-     * Luodaan maasto, jonka koko määräytyy konstruktorissa annettujen parametrien mukaan.
+     * Luo maaston, jonka koko määräytyy konstruktorissa annettujen parametrien mukaan.
      * 
      * 
      * @return luotu maasto
@@ -77,7 +77,7 @@ public class OmaGeneraattori {
     }
         
     /**
-     * Liikutetaan maaston keskikohtaa parametreina annettu määrä.
+     * Liikuttaa maaston keskikohtaa parametreina annetun määrän.
      * 
      * @param dx miten monta blokkia tai miten suuri osuus blokista liikutaan x-suunnassa
      * @param dy miten monta blokkia tai miten suuri osuus blokista liikutaan y-suunnassa

@@ -91,7 +91,10 @@ public class KvaternioTest {
     
     @Test
     public void kertolaskuAntaaOikeanTuloksen() {
-        
+        Kvaternio k1 = new Kvaternio(-5, 10, -20, 30);
+        Kvaternio k2 = new Kvaternio(1, 2, 3, 4);
+        Kvaternio tulos = k1.kerro(k2);
+        assertEquals(tulos, new Kvaternio(-85, -170, -15, 80));
     }
     
     @Test
@@ -102,5 +105,17 @@ public class KvaternioTest {
     @Test
     public void uusiKaantoLuoKvaternion() {
         assertFalse(Kvaternio.uusiKaanto(8.6, 0, 1, 100000) == null);
+    }
+    
+    @Test
+    public void samojenVertailuOikein() {
+        Kvaternio toinen = new Kvaternio(-8.5, 4.0, 1.56, -100000.0);
+        assertEquals(k, toinen);
+    }
+    
+    @Test
+    public void erilaistenVertailuOikein() {
+        Kvaternio toinen = new Kvaternio(-8.5, 4.0, 1.56, -10000.0);
+        assertFalse(k.equals(toinen));
     }
 }

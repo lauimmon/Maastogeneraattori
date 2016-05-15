@@ -25,8 +25,8 @@ public class Maailma {
     private double[][] varjot;
     
     /**
-     * Luodaan korkeusarvojen taulukon 'ruudukko' avulla maastolle vektoriesitys 'kartta', 
-     * kolmioitu pinta 'kolmiomaasto' sekä värit.
+     * Luo korkeusarvojen taulukon 'ruudukko' avulla maastolle vektoriesityksen 'kartta', 
+     * kolmioidun pinnan 'kolmiomaasto' sekä värit.
      * 
      * @param maasto jollain algoritmilla luotu maasto, jossa maaston korkeusarvot esitetty taulukossa
      */
@@ -185,7 +185,7 @@ public class Maailma {
     }
 
     /**
-     * Asetetaan valonlähteen paikka.
+     * Asettaa valonlähteen paikan.
      * 
      * @param aurinko auringon paikka vektorina
      */

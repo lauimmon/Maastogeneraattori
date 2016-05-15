@@ -16,7 +16,7 @@ Timantti-neliö-algoritmin aikavaativuus on samoin O(n) ja tilavaativuus O(n), s
 
 **Työn puutteet ja parannusehdotukset**
 
-Maastogeneraattori ei tuota vielä halutunlaista maastoa. Perlinkohinalla tuotettu maasto on liian sileää. Siitä tulisi saada samankaltaista kuin timantti-neliö-algoritmilla tuotetusta maastosta. 
+
 
 **Lähteet**
 

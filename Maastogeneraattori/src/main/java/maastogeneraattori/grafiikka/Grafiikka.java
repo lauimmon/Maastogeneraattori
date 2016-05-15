@@ -27,7 +27,7 @@ public class Grafiikka extends JPanel{
     private Kvaternio katsojanSuunta = Kvaternio.uusiKaanto(-0.82, 1.0, 0.0, 0.0);
     
     /**
-     * Luodaan ruudulla esitettävä esitys maaston tietojen pohjalta. Maaston vektoriesityksetä
+     * Luo ruudulla esitettävän esityksen maaston tietojen pohjalta. Maaston vektoriesityksetä
      * luodaan ensin vektoriesitys katsojan näkymästä ja sitten siitä ruudulle
      * piirrettävästä näkymästä pikseliesitys.
      * 

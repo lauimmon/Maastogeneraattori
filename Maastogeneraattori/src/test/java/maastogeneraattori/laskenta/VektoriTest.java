@@ -41,13 +41,40 @@ public class VektoriTest {
     }
     
     @Test
+    public void xOikein() {
+        assertTrue(v.getX() == 2.0);
+    }
+    
+    @Test
+    public void yOikein() {
+        assertTrue(v.getY() == -1.0);
+    }
+    
+    @Test
+    public void zOikein() {
+        assertTrue(v.getZ() == 3.5);
+    }
+    
+    @Test
     public void summaPalauttaaVektorin() {
         assertFalse(v.lisaa(v) == null);
     }
     
     @Test
+    public void summaOikein() {
+        v = v.lisaa(v);
+        assertEquals(v, new Vektori(4.0, -2.0, 7.0));
+    }
+    
+    @Test
     public void vahennysPalauttaaVektorin() {
         assertFalse(v.vahenna(new Vektori(1.0, 0.0, -6.5)) == null);
+    }
+    
+    @Test
+    public void vahennysItsensaKanssaOikein() {
+        v = v.vahenna(v);
+        assertEquals(v, new Vektori(0.0, 0.0, 0.0));
     }
     
     @Test
@@ -66,6 +93,18 @@ public class VektoriTest {
     }
     
     @Test
+    public void ristituloItsensaKanssaOikein() {
+        v = v.ristitulo(v);
+        assertEquals(v, new Vektori(0, 0, 0));
+    }
+    
+    @Test
+    public void ristituloOikein() {
+        v = v.ristitulo(new Vektori(1.0, 2.0, 3.0));
+        assertEquals(v, new Vektori(-10, -2.5, 5));
+    }
+    
+    @Test
     public void pituusOikein() {
         assertTrue(new Vektori(1.0, 0, 0).pituus() == 1);
     }
@@ -80,5 +119,17 @@ public class VektoriTest {
     public void skaalaauksenTulosOikeanPituinen() {
         Vektori v1 = v.skaalaa(4);
         assertTrue(v1.pituus()/v.pituus() == 4);
+    }
+    
+    @Test
+    public void vertaaSamojaVektoreitaOikein() {
+        Vektori v1 = new Vektori(2.0, -1.0, 3.5);
+        assertEquals(v, v1);
+    }
+    
+    @Test
+    public void vertaaEriVektoreitaOikein() {
+        Vektori v1 = new Vektori(-1.0, 3.5, 2.0);
+        assertFalse(v.equals(v1));
     }
 }

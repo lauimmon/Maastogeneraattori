@@ -2,6 +2,8 @@
 package maastogeneraattori.maastogeneraattori;
 
 import maastogeneraattori.laskenta.Vektori;
+import maastogeneraattori.tietorakenteet.DynaaminenTaulukko;
+import maastogeneraattori.tietorakenteet.Hajautustaulu;
 
 
 
@@ -43,8 +45,9 @@ public class Main {
         Kayttoliittyma kali = new Kayttoliittyma(400, 50, 2);
         kali.run();
         
+
         
-        
+       
     }
     
 }

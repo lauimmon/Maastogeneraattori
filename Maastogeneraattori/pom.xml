@@ -40,11 +40,13 @@
                         <param>maastogeneraattori.algoritmit.*</param>
                         <param>maastogeneraattori.laskenta.*</param>
                         <param>maastogeneraattori.maailma.*</param>
+                        <param>maastogeneraattori.tietorakenteet.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>maastogeneraattori.algoritmit.*</param>
                         <param>maastogeneraattori.laskenta.*</param>
                         <param>maastogeneraattori.maailma.*</param>
+                        <param>maastogeneraattori.tietorakenteet.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

@@ -40,22 +40,10 @@ public class PerlinTest {
     @After
     public void tearDown() {
     }
-
+    
     @Test
-    public void asettaaSatunnaisvektorit() {
-        boolean asetettu = true;
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                if (p.getRandomVektorit()[i][j] == null) {
-                    asetettu = false;
-                    break;
-                }
-            }
-            if (!asetettu) {
-                break;
-            }
-        }
-        assertTrue(asetettu);
+    public void alustaaOikeanKokoisenTaulukon() {
+        assertEquals(p.getRandomVektorit().length, koko + 1);
     }
     
     @Test

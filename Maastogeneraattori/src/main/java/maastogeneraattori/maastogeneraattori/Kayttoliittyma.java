@@ -10,7 +10,7 @@ import maastogeneraattori.algoritmit.OmaGeneraattori;
 import maastogeneraattori.grafiikka.Grafiikka;
 
 /**
- * 
+ * Graafinen käyttöliittymä.
  * 
  * @author lauimmon
  */
@@ -23,6 +23,14 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     private int resoluutio;
     private int maastoKoko;
     
+    /**
+     * Luo oman generaattorin annettujen parametrien mukaan.
+     * 
+     * @param perlinKoko maailman blokkien määrä per sivu
+     * @param resoluutio näkyvän maaston pisteiden määrä per sivu
+     * @param maastoKoko näkyvän maaston blokkien määrä per sivu
+     */
+    
     public Kayttoliittyma(int perlinKoko, int resoluutio, int maastoKoko) {
         this.perlinKoko = perlinKoko;
         this.resoluutio = resoluutio;
@@ -32,6 +40,10 @@ public class Kayttoliittyma implements Runnable, KeyListener {
         long loppu = System.currentTimeMillis();
         System.out.println("Oman generaattorin luonti: " + (loppu - alku));
     }
+    
+    /**
+     * Luo ikkunan.
+     */
     
     @Override
     public void run() {
@@ -71,6 +83,12 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Nuolinäppäimiä pohjaan painettaessa kartalla liikutaan nuolta vastaavaan suuntaan.
+     * 
+     * @param e 
+     */
+    
     @Override
     public void keyPressed(KeyEvent e) {
         long alku = System.currentTimeMillis();

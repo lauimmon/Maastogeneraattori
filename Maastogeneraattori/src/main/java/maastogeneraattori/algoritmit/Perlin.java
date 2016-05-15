@@ -19,7 +19,7 @@ public class Perlin {
     private Random rand = new Random();
 
     /**
-     * Tehdään perusta vektoritaulukolle. Jokainen taulukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
+     * Luo perustan vektoritaulukolle. Jokainen taulukon piste saa arvokseen satunnaisvektorin, jonka pituus 1.
      * 
      * @param n taulukon koko
      */

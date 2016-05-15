@@ -17,7 +17,7 @@ public class Kolmio {
     private Color vari;
 
     /**
-     * Luo Kolmion, jonka kulmien koordinaatit ovat (x1, y1), (x2, y2) ja (x3, y3)
+     * Luo kolmion, jonka kulmien koordinaatit ovat (x1, y1), (x2, y2) ja (x3, y3)
      * 
      * @param x1
      * @param y1
