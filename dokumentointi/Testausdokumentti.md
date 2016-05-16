@@ -1,11 +1,2 @@
-**Mitä testattiin**
+Testit on tehty JUnitilla ja testit kattavat suunnilleen kaiken muun paitsi grafiikkaluokat. Erilaisia syötteitä olen testannut vain manuaalisesti, joten niille ei ole JUnit-testejä, eikä niitä ole dokumentoitu. En ehtinyt keksiä, miten syötteitä voisi testata automaattisesti, eivätkä manuaaliset testit olleet kattavia. Syötteitä testatessa näytti siltä, että teoreettiset aikavaativuudet pitävät paikkansa. Muistin kanssa oli joitakin ongelmia suurilla syötteillä, mutta en saanut tätä testattua kattavasti.
 
-Testit on tehty JUnitilla ja testit kattavat suunnilleen kaiken muun paitsi grafiikkaluokat. Testeissä on siis testattu laskentaan käytettäviä luokkia ja jonkin verran algoritmiluokkia. Algoritmeja en ole vielä testannut kattavasti, sillä algoritmit eivät ole saaneet lopullista muotoaan.
-
-**Syötteet**
-
-Erilaisilla syötteillä ei ole vielä kattavasti tehty testejä.
-
-**Testien toisto**
-
-Testit ovat toistettavissa.
