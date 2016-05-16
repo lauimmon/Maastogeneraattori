@@ -96,7 +96,7 @@ public class OmaGeneraattori {
         } else if (maastonKeskikohtaY > p1.getRandomVektorit()[0].length - 1 - (double) nakyvatBlokit / 2) {
             maastonKeskikohtaY = p1.getRandomVektorit().length - 1 - (double) nakyvatBlokit / 2;
         }
-        System.out.println(maastonKeskikohtaX + ", " + maastonKeskikohtaY);
+        
     }
 
     /**

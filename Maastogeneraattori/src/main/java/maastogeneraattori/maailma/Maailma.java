@@ -39,30 +39,16 @@ public class Maailma {
         this.varit = new RGB[k][l];
         this.varjot = new double[k][l];
         
-        long alku = System.currentTimeMillis();
         asetaMinJaMax();
-        long loppu = System.currentTimeMillis();
-        System.out.println("        Min ja max asetus: " + (loppu - alku));
         
-        alku = System.currentTimeMillis();
         asetaKarttaJaVarit();
-        loppu = System.currentTimeMillis();
-        System.out.println("        Kartan ja Värien asetus: " + (loppu - alku));
         
-        alku = System.currentTimeMillis();
         kolmioiMaasto();
-        loppu = System.currentTimeMillis();
-        System.out.println("        Maaston kolmiointi: " + (loppu - alku));
         
-        alku = System.currentTimeMillis();
         lisaaVarjot();
-        loppu = System.currentTimeMillis();
-        System.out.println("        Varjojen lisäys: " + (loppu - alku));
         
-        alku = System.currentTimeMillis();
         lisaaValo();
-        loppu = System.currentTimeMillis();
-        System.out.println("        Valon lisäys: " + (loppu - alku));
+        
     }
     
     private void asetaMinJaMax() {
