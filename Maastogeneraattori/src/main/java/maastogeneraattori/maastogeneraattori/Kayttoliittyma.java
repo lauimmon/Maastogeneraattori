@@ -67,7 +67,7 @@ public class Kayttoliittyma implements Runnable, KeyListener {
     /**
      * Nuolinäppäimiä pohjaan painettaessa kartalla liikutaan nuolta vastaavaan suuntaan.
      * 
-     * @param e 
+     * @param e näppäin
      */
     
     @Override

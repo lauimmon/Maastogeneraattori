@@ -17,8 +17,8 @@ public class Solmu {
      * Luo solmun, jonka avain ja arvo on annettu parametreillä ja viite seuraavaan
      * solmuun on null.
      * 
-     * @param avain
-     * @param arvo 
+     * @param avain avain
+     * @param arvo arvo
      */
     
     public Solmu(Object avain, Object arvo) {
@@ -40,7 +40,7 @@ public class Solmu {
     /**
      * Asettaa solmun arvon.
      * 
-     * @param arvo 
+     * @param arvo asetettava arvo
      */
     
     public void asetaArvo(Object arvo) {

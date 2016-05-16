@@ -112,6 +112,7 @@ public class Perlin {
     }
 
     /**
+     * Hakee randomvektorit
      * 
      * @return taulukko satunnaisVektoreista
      */

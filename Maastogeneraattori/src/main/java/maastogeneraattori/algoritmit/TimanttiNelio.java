@@ -25,7 +25,7 @@ public class TimanttiNelio {
      * Luo taulukon, johon myöhemmin sijoitetaan timantti-neliö-algoritmilla tuotetut korkeusarvot.
      * 
      * @param koko on haluttu kokoluokka maastolle. Luodussa maastossa on 
-     * (2^n + 1)*(2^n + 1) pistettä, jossa n on kokonaisluku, jolla 2^n + 1 >= koko.
+     * (2^n + 1)*(2^n + 1) pistettä, jossa n on kokonaisluku, jolla 2^n + 1 on suurempi kuin koko.
      * Luodun maaston koko on siis syötetty arvo koko, tai suurempi, mutta kuitenkin
      * korkeintaan kaksi kertaa suurempi.
      */
@@ -134,6 +134,7 @@ public class TimanttiNelio {
     }
 
     /**
+     * Hakee maaston.
      * 
      * @return luotu maasto 
      */
@@ -143,7 +144,7 @@ public class TimanttiNelio {
     }
     
     /**
-     * 
+     * Hakee koon.
      * @return luotavan maaston koko 
      */
     

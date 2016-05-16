@@ -19,12 +19,12 @@ public class Kolmio {
     /**
      * Luo kolmion, jonka kulmien koordinaatit ovat (x1, y1), (x2, y2) ja (x3, y3)
      * 
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
-     * @param x3
-     * @param y3 
+     * @param x1 x1
+     * @param y1 y1
+     * @param x2 x2
+     * @param y2 y2
+     * @param x3 x3
+     * @param y3 y3
      */
     
     public Kolmio(int x1, int y1, int x2, int y2,

@@ -26,7 +26,7 @@ public class RGB {
     /**
      * Laskee kahden värin välisen summan.
      * 
-     * @param rgb
+     * @param rgb lisättä rgb
      * @return värien summa
      */
     
@@ -37,7 +37,7 @@ public class RGB {
     /**
      * Laskee kahden värin välisen erotuksen.
      * 
-     * @param rgb
+     * @param rgb vähennettävä rgb-väri
      * @return värien erotus
      */
     

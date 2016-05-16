@@ -23,7 +23,7 @@ public class DynaaminenTaulukko {
     /**
      * Lisää alkion taulukon perälle.
      * 
-     * @param alkio 
+     * @param alkio lisättävä alkio
      */
     
     public void lisaa(Object alkio) {
@@ -37,8 +37,8 @@ public class DynaaminenTaulukko {
     /**
      * Lisää alkion haluttuun paikkaan taulukossa.
      * 
-     * @param indeksi
-     * @param alkio 
+     * @param indeksi indeksi
+     * @param alkio lisättävä alkio
      */
     
     public void lisaa(int indeksi, Object alkio) {
@@ -66,7 +66,7 @@ public class DynaaminenTaulukko {
      * ei tapahdu mitään. Jos taulukossa on useampia saman alkion esiintymiä,
      * poistaa vain näistä ensimmäisen.
      * 
-     * @param alkio 
+     * @param alkio poistettava alkio
      */
     
     public void poista(Object alkio) {
@@ -88,7 +88,7 @@ public class DynaaminenTaulukko {
      * Hakee alkion tietystä paikasta taulukossa.
      * 
      * @param indeksi mistä alkio haetaan
-     * @return alkio
+     * @return alkio haettava alkio
      */
     
     public Object hae(int indeksi) {
@@ -101,7 +101,7 @@ public class DynaaminenTaulukko {
     /**
      * Tarkistaa, että esiintyykö alkio taulukossa.
      * 
-     * @param alkio
+     * @param alkio etsittävä alkio
      * @return true jos alkio löytyy taulukosta, false jos ei
      */
     
@@ -122,7 +122,7 @@ public class DynaaminenTaulukko {
      * taulukossa, palauttaa sen ensimmäisen esiintymisen indeksin. 
      * Jos alkio ei esiinny taulukossa, palauttaa -1.
      * 
-     * @param alkio
+     * @param alkio etsittävä alkio
      * @return alkion indeksi
      */
     

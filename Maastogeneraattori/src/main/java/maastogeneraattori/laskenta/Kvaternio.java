@@ -14,10 +14,10 @@ public class Kvaternio {
     /**
      * Luo kvaternion, jonka vektoriosa x, y, z ja skalaariosa w
      * 
-     * @param w
-     * @param x
-     * @param y
-     * @param z 
+     * @param w w-arvo
+     * @param x x-arvo
+     * @param y y-arvo
+     * @param z z-arvo
      */
 
     public Kvaternio(double w, double x, double y, double z) {
@@ -50,7 +50,7 @@ public class Kvaternio {
     /**
      * Laskee kahden kvaternion välisen kertolaskun.
      * 
-     * @param k
+     * @param k kerrottava kvaternio
      * @return kertolaskun tuloskvaternio
      */
     
@@ -62,6 +62,13 @@ public class Kvaternio {
         double nz = w * kz + z * kw + x * ky - y * kx;
         return new Kvaternio(nw, nx, ny, nz);
     }
+    
+    /**
+     * Kääntää vektorin kvaternion avulla.
+     * 
+     * @param v käännettävä vektori
+     * @return käännetty vektori
+     */
     
     public Vektori kaanna(Vektori v) {
         if (kaanteinen == null) {

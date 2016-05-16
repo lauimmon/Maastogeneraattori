@@ -87,7 +87,7 @@ public class Grafiikka extends JPanel{
     /**
      * Piirtää maaston kolmioidun pinnan ruudulle pikseliesityksen perusteella.
      * 
-     * @param g 
+     * @param g grafiikka
      */
     
     @Override

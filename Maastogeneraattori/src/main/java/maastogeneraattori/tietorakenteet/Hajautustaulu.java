@@ -32,8 +32,8 @@ public class Hajautustaulu {
      * ei lisää avainta uudestaan, vaan muuttaa sen arvoa. Jos avainlista täyttyy, 
      * sen kokoa kasvatetaan. Jos täyttösuhde ylittää 0,75, kasvatetaan hajautustaulun kokoa.
      * 
-     * @param avain
-     * @param arvo 
+     * @param avain lisättävä avain
+     * @param arvo lisättävä arvo
      */
     
     public void lisaa(Object avain, Object arvo) {
@@ -94,7 +94,7 @@ public class Hajautustaulu {
     /**
      * Tarkistaa löytyykö hajautustaulusta parametrina annettua avainta.
      * 
-     * @param avain
+     * @param avain etsittävä avain
      * @return true jos avain löytyy taulusta, false jos ei
      */
     
@@ -109,7 +109,7 @@ public class Hajautustaulu {
      * Tarkistaa löytyykö hajautustaulusta alkio, jonka arvo on parametrina
      * annettu.
      * 
-     * @param arvo
+     * @param arvo etsittävä arvo
      * @return true jos arvo löytyy taulusta, false jos ei
      */
     

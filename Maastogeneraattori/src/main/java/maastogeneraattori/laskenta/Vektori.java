@@ -12,9 +12,9 @@ public class Vektori {
     /**
      * Luo kolmiulotteisen vektorin, jonka pituus x-suunnassa on x, y-suunnassa y ja z-suunnassa z.
      * 
-     * @param x
-     * @param y
-     * @param z 
+     * @param x x-arvo
+     * @param y y-arvo
+     * @param z z-arvo
      */
     
     public Vektori(double x, double y, double z) {
@@ -26,8 +26,8 @@ public class Vektori {
     /**
      * Luo kaksiulotteisen vektorin, eli kolmiuloittesen vektorin, jonka z-suuntainen pituus on 0.
      * 
-     * @param x
-     * @param y 
+     * @param x x-arvo
+     * @param y y-arvo
      */
     
     public Vektori(double x, double y) {
@@ -39,7 +39,7 @@ public class Vektori {
     /**
      * Laskee kahden vektorin välisen yhteenlaskun.
      * 
-     * @param v
+     * @param v lisättävä vektori
      * @return vektori, joka on näiden vektorien summa
      */
     
@@ -50,7 +50,7 @@ public class Vektori {
     /**
      * Laskee kahden vektorin erotuksen.
      * 
-     * @param v
+     * @param v vähennettävä vektori
      * @return vektori, joka on näiden vektorien erotus
      */
     
@@ -61,7 +61,7 @@ public class Vektori {
     /**
      * Laskee kahden vektorin välisen pistetulon.
      * 
-     * @param v
+     * @param v pistetulon toinen osapuoli
      * @return tuloksena skalaari
      */
     
@@ -72,7 +72,7 @@ public class Vektori {
     /**
      * Laskee kahden vektorin välisen ristitulon.
      * 
-     * @param v
+     * @param v ristitulon toinen osapuoli
      * @return vektori, joka on näiden vektoreiden ristitulon tulos
      */
     
